@@ -25,8 +25,19 @@ public class Main {
         second.setWeight(55);
         second.setSex(Sex.FEMALE);
 
+        Sportsman third = new Sportsman();
+        third.setAge(21);
+        third.setClub("Molodost");
+        third.setCountry("Belarus");
+        third.setFirstname("Andrew");
+        third.setLastName("Dorohovich");
+        third.setWeight(75);
+        third.setSex(Sex.MALE);
+
         sportsmanRepository.save(first);
         sportsmanRepository.save(second);
+        sportsmanRepository.save(third);
+        System.out.println(sportsmanRepository.findSportsManByAge(21));
         System.out.println(sportsmanRepository.findAll());
     }
 }

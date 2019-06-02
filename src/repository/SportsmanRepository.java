@@ -5,6 +5,14 @@ import entity.Sportsman;
 import java.util.List;
 
 public interface SportsmanRepository {
-    public void save(Sportsman sportsman);
-    public List<Sportsman> findAll();
+    void save(Sportsman sportsman);
+
+    List<Sportsman> findAll();
+
+    List<Sportsman> findSportsManByAge(int age);
+
+    Sportsman findById(int id);
+
+    List<Sportsman> findByWeight(int weight);
+
 }

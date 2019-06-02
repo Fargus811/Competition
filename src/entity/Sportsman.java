@@ -98,18 +98,11 @@ public class Sportsman {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sportsman sportsman = (Sportsman) o;
-        return id == sportsman.id &&
-                age == sportsman.age &&
-                Double.compare(sportsman.weight, weight) == 0 &&
-                Objects.equals(firstName, sportsman.firstName) &&
-                Objects.equals(lastName, sportsman.lastName) &&
-                Objects.equals(club, sportsman.club) &&
-                Objects.equals(country, sportsman.country) &&
-                sex == sportsman.sex;
+        return id == sportsman.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, age, weight, club, country, sex);
+        return Objects.hash(id);
     }
 }
