@@ -39,5 +39,6 @@ public class Main {
         sportsmanRepository.save(third);
         System.out.println(sportsmanRepository.findSportsManByAge(21));
         System.out.println(sportsmanRepository.findAll());
+        System.out.println(sportsmanRepository.findByManandWeight(75));
     }
 }

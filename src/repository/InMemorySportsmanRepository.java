@@ -1,5 +1,6 @@
 package repository;
 
+import entity.Sex;
 import entity.Sportsman;
 
 import java.util.ArrayList;
@@ -48,7 +49,19 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
         List<Sportsman> weightSportsman = new ArrayList<>();
         for (Sportsman sportsman: sportsmanList
         ) {
-            if (sportsman.getAge() == weight){
+            if (sportsman.getWeight() == weight){
+                weightSportsman.add(sportsman);
+            }
+        }
+        return weightSportsman;
+    }
+
+    @Override
+    public List<Sportsman> findByManandWeight(int weight) {
+        List<Sportsman> weightSportsman = new ArrayList<>();
+        for (Sportsman sportsman: sportsmanList
+        ) {
+            if (sportsman.getWeight() == weight && sportsman.getSex() == Sex.MALE){
                 weightSportsman.add(sportsman);
             }
         }
