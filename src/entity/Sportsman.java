@@ -1,14 +1,25 @@
+package entity;
+
 import java.util.Objects;
 
 public class Sportsman {
+    private int id;
     private String firstName;
     private String lastName;
     private int age;
     private double weight;
     private String club;
-    private String rank;
     private String country;
     private Sex sex;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public Sex getSex() {
         return sex;
@@ -58,13 +69,7 @@ public class Sportsman {
         this.club = club;
     }
 
-    public String getRank() {
-        return rank;
-    }
 
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
 
     public String getCountry() {
         return country;
@@ -74,16 +79,15 @@ public class Sportsman {
         this.country = country;
     }
 
-
     @Override
     public String toString() {
-        return "Sportsman{" +
-                "firstName='" + firstName + '\'' +
+        return "entity.Sportsman{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", weight=" + weight +
                 ", club='" + club + '\'' +
-                ", rank='" + rank + '\'' +
                 ", country='" + country + '\'' +
                 ", sex=" + sex +
                 '}';
@@ -94,19 +98,18 @@ public class Sportsman {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sportsman sportsman = (Sportsman) o;
-        return age == sportsman.age &&
+        return id == sportsman.id &&
+                age == sportsman.age &&
                 Double.compare(sportsman.weight, weight) == 0 &&
                 Objects.equals(firstName, sportsman.firstName) &&
                 Objects.equals(lastName, sportsman.lastName) &&
                 Objects.equals(club, sportsman.club) &&
-                Objects.equals(rank, sportsman.rank) &&
                 Objects.equals(country, sportsman.country) &&
                 sex == sportsman.sex;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, age, weight, club, rank, country, sex);
+        return Objects.hash(id, firstName, lastName, age, weight, club, country, sex);
     }
-
 }
