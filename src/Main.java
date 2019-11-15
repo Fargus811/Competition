@@ -16,6 +16,8 @@ public class Main {
         first.setWeight(75);
         first.setSex(Sex.MALE);
 
+        Sportsman last = new Sportsman("Sasha", "Molch", 21, 67, "Tdo", "Belarus", Sex.MALE);
+
         Sportsman second = new Sportsman();
         second.setAge(20);
         second.setClub("Molodost");
@@ -37,6 +39,7 @@ public class Main {
         sportsmanRepository.save(first);
         sportsmanRepository.save(second);
         sportsmanRepository.save(third);
+        sportsmanRepository.save(last);
         System.out.println(sportsmanRepository.findSportsManByAge(21));
         System.out.println(sportsmanRepository.findAll());
         System.out.println(sportsmanRepository.findByManandWeight(75));

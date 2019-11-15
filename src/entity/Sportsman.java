@@ -12,6 +12,19 @@ public class Sportsman {
     private String country;
     private Sex sex;
 
+    public Sportsman(String firstName, String lastName, int age, double weight, String club, String country, Sex sex) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.weight = weight;
+        this.club = club;
+        this.country = country;
+        this.sex = sex;
+    }
+
+    public Sportsman() {
+    }
+
     public int getId() {
         return id;
     }
@@ -68,7 +81,6 @@ public class Sportsman {
     public void setClub(String club) {
         this.club = club;
     }
-
 
 
     public String getCountry() {

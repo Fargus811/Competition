@@ -15,6 +15,6 @@ public interface SportsmanRepository {
 
     List<Sportsman> findByWeight(int weight);
 
-    List<Sportsman> findByManandWeight( int weight);
+    List<Sportsman> findByManandWeight(int weight);
 
 }
