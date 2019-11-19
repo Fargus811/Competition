@@ -1,47 +1,36 @@
-import entity.Sex;
-import entity.Sportsman;
-import repository.InMemorySportsmanRepository;
-import repository.SportsmanRepository;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) {
-        SportsmanRepository sportsmanRepository = new InMemorySportsmanRepository();
+    public static void main(String[] args) throws IOException {
+        System.out.println("Добро пожаловать в ЗОЖКино, перед тем как перейти дальше прошу введите логин");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        while (true) {
+            String entry = bufferedReader.readLine();
+            if (entry.equals("admin")) {
+                System.out.println("Введите одну из предложенных команд: создание, обновление, удаление");
+                adminControll();
+                break;
 
-        Sportsman first = new Sportsman();
-        first.setAge(21);
-        first.setClub("Molodost");
-        first.setCountry("Belarus");
-        first.setFirstname("Daniil");
-        first.setLastName("Sergeev");
-        first.setWeight(75);
-        first.setSex(Sex.MALE);
+            } else if (entry.equals("coach")) {
 
-        Sportsman last = new Sportsman("Sasha", "Molch", 21, 67, "Tdo", "Belarus", Sex.MALE);
+                break;
+            } else if (entry.equals("user")) {
 
-        Sportsman second = new Sportsman();
-        second.setAge(20);
-        second.setClub("Molodost");
-        second.setCountry("Belarus");
-        second.setFirstname("Anna");
-        second.setLastName("Sergeeva");
-        second.setWeight(55);
-        second.setSex(Sex.FEMALE);
+                break;
+            } else {
+                System.out.println("Неверный логин");
+                System.out.println("Попробуйте ещё раз");
+                continue;
+            }
 
-        Sportsman third = new Sportsman();
-        third.setAge(21);
-        third.setClub("Molodost");
-        third.setCountry("Belarus");
-        third.setFirstname("Andrew");
-        third.setLastName("Dorohovich");
-        third.setWeight(75);
-        third.setSex(Sex.MALE);
 
-        sportsmanRepository.save(first);
-        sportsmanRepository.save(second);
-        sportsmanRepository.save(third);
-        sportsmanRepository.save(last);
-        System.out.println(sportsmanRepository.findSportsManByAge(21));
-        System.out.println(sportsmanRepository.findAll());
-        System.out.println(sportsmanRepository.findByManandWeight(75));
+        }
+        public static void adminControll() {
+            String adminControl = bufferedReader.readLine();
+            if ()
+        }
     }
+
 }
