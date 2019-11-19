@@ -1,14 +1,40 @@
-package repository;import entity.Sex;
+package repository;
+
 import entity.Coach;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class IInMemoryCoachRepository implements CoachRepository {
-    private List<Coach> sportsmanList = new ArrayList<>();
+public class InMemoryCoachRepository implements CoachRepository {
+    @Override
+    public List<Coach> findCoachByAge(int age) {
+        List<Coach> ageCoach = new ArrayList<>();
+        for (Coach coach : coachList
+        ) {
+            if (coach.getAge() == age) {
+                ageCoach.add(coach);
+            }
+        }
+        return ageCoach;
+
+    }
+
+    @Override
+    public List<Coach> findByCost(int cost) {
+        List<Coach> costCoach = new ArrayList<>();
+        for (Coach coach : coachList
+        ) {
+            if (coach.getCost() == cost) {
+                costCoach.add(coach);
+            }
+        }
+        return costCoach;
+
+    }
+
+    private List<Coach> coachList = new ArrayList<>();
     private static int counter = 0;
-    private Object Coach;
 
     @Override
     public void save(Coach coach) {
@@ -19,41 +45,19 @@ public class IInMemoryCoachRepository implements CoachRepository {
 
     @Override
     public List<Coach> findAll() {
-        return Collections.unmodifiableList(sportsmanList);
+        return Collections.unmodifiableList(coachList);
     }
 
-    @Override
-    public List<Coach> findSportsManByAge(int age) throws Exception {
-        List<Coach> ageCoach = new ArrayList<>();
-        for (Coach sportsman : sportsmanList
-        ) {
-            if (sportsman.getAge() == age) {
-                ageCoach.add(Coach);
-            }
-        }
-        return ageSportsman;
-
-    }
 
     @Override
     public Coach findById(int id) {
         Coach fake = new Coach();
         fake.setId(id);
         int index = coachList.indexOf(fake);
-        return sportsmanList.get(index);
+        return coachList.get(index);
     }
 
-    @Override
-    public List<Sportsman> findByWeight(int weight) {
-        List<Sportsman> weightSportsman = new ArrayList<>();
-        for (Sportsman sportsman : sportsmanList
-        ) {
-            if (sportsman.getWeight() == weight) {
-                weightSportsman.add(sportsman);
-            }
-        }
-        return weightSportsman;
-    }
+
 
 
     public static int getCounter() {

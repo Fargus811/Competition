@@ -12,5 +12,5 @@ public interface CoachRepository {
     List<Coach> findCoachByAge(int age);
 
     Coach findById(int id);
-    Coach findByCost(int cost);
+    List<Coach> findByCost(int cost);
 }
