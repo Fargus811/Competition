@@ -30,6 +30,10 @@ public class Coach {
     public int getCost() {
         return cost;
     }
+    public void setCost(){
+        this.cost = cost;
+
+    }
 
     public void setId(int id) {
         this.id = id;
