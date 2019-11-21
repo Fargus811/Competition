@@ -1,6 +1,6 @@
-package ui;
+package userInterface;
 
-import dan.service.UserService;
+import service.UserService;
 
 import java.util.List;
 

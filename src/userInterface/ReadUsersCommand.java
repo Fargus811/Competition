@@ -1,7 +1,7 @@
-package ui;
+package userInterface;
 
-import dan.entity.Role;
-import dan.entity.User;
+import entity.Role;
+import entity.User;
 
 import java.util.Arrays;
 import java.util.List;
