@@ -7,6 +7,24 @@ import java.util.Collections;
 import java.util.List;
 
 public class InMemoryCoachRepository implements CoachRepository {
+
+    private List<Coach> coachList = new ArrayList<>();
+
+    private static int counter = 0;
+
+    private static InMemoryCoachRepository instance ;
+
+    private InMemoryCoachRepository(){
+
+    }
+
+    public static InMemoryCoachRepository getInstance(){
+        if(instance == null){
+            instance = new InMemoryCoachRepository();
+        }
+        return instance;
+    }
+
     @Override
     public List<Coach> findCoachByAge(int age) {
         List<Coach> ageCoach = new ArrayList<>();
@@ -33,9 +51,6 @@ public class InMemoryCoachRepository implements CoachRepository {
 
     }
 
-    private List<Coach> coachList = new ArrayList<>();
-    private static int counter = 0;
-
     @Override
     public void save(Coach coach) {
         coach.setId(counter);
@@ -48,7 +63,6 @@ public class InMemoryCoachRepository implements CoachRepository {
         return Collections.unmodifiableList(coachList);
     }
 
-
     @Override
     public Coach findById(int id) {
         Coach fake = new Coach();
@@ -57,10 +71,8 @@ public class InMemoryCoachRepository implements CoachRepository {
         return coachList.get(index);
     }
 
-
-
-
     public static int getCounter() {
         return counter;
     }
+
 }

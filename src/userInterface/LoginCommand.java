@@ -22,9 +22,9 @@ public class LoginCommand implements Command {
     public CommandResult process(List<String> params) {
         boolean isLogined = userService. login(params.get(0), params.get(1));
         if (isLogined) {
-            return new CommandResult(new ShowAdminActionsCommand(), null);
+            return new CommandResult(new ShowAdminActionsCommand(), "Вы авторизированны");
         } else {
-            return new CommandResult(new LoginCommand(), null);
+            return new CommandResult(new LoginCommand(), "Неверный логин или пароль");
         }
     }
 }
