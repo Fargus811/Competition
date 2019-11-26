@@ -8,8 +8,24 @@ import java.util.Collections;
 import java.util.List;
 
 public class InMemorySportsmanRepository implements SportsmanRepository {
+
     private List<Sportsman> sportsmanList = new ArrayList<>();
+
     private static int counter = 0;
+
+    private static InMemorySportsmanRepository instance ;
+
+    private InMemorySportsmanRepository(){
+
+    }
+
+    public static InMemorySportsmanRepository getInstance(){
+        if(instance == null){
+            instance = new InMemorySportsmanRepository();
+        }
+        return instance;
+    }
+
 
     @Override
     public void save(Sportsman sportsman) {

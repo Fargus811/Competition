@@ -1,6 +1,13 @@
 package userInterface;
 
+import userInterface.coachcommands.CreateCoachCommand;
+import userInterface.coachcommands.DeleteCoachCommand;
 import userInterface.coachcommands.ShowAllCoachesCommand;
+import userInterface.coachcommands.UpdateCoachCommand;
+import userInterface.sportsmancommands.CreatSporstmanCommand;
+import userInterface.sportsmancommands.DeleteSportsmanCommand;
+import userInterface.sportsmancommands.ShowAllSportsmenCommand;
+import userInterface.sportsmancommands.UpdateSportsmanCommand;
 
 import java.util.List;
 
@@ -32,9 +39,40 @@ public class ShowAdminActionsCommand implements Command {
         CommandResult commandResult;
         switch (params.get(0)) {
 
+            case "1":
+                commandResult = new CommandResult(new ShowAllSportsmenCommand(), null);
+                break;
+
             case "2":
                 commandResult = new CommandResult(new ShowAllCoachesCommand(), null);
                 break;
+
+            case "3":
+                commandResult = new CommandResult(new ShowAllUsersCommand(),null);
+                break;
+
+            case "4":
+                commandResult = new CommandResult(new CreateCoachCommand(),null);
+                break;
+
+            case "5":
+                commandResult = new CommandResult(new CreatSporstmanCommand(),null);
+                break;
+
+            case "6":
+                commandResult = new CommandResult(new DeleteCoachCommand(),null);
+                break;
+
+            case "7":
+                commandResult = new CommandResult(new DeleteSportsmanCommand(),null);
+
+            case "8":
+                commandResult = new CommandResult(new UpdateCoachCommand(),null);
+                break;
+
+            case "9":
+                commandResult = new CommandResult(new UpdateSportsmanCommand(),null);
+
             default:
                 commandResult = new CommandResult(new ShowAdminActionsCommand(), null);
                 break;
