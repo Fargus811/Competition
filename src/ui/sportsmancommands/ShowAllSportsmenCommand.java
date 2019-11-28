@@ -1,11 +1,10 @@
-package userInterface.sportsmancommands;
+package ui.sportsmancommands;
 
-import entity.Coach;
 import entity.Sportsman;
 import service.SportsmanService;
-import userInterface.Command;
-import userInterface.CommandResult;
-import userInterface.ShowAdminActionsCommand;
+import ui.Command;
+import ui.CommandResult;
+import ui.ShowAdminActionsCommand;
 
 import java.util.List;
 

@@ -1,13 +1,13 @@
-package userInterface;
+package ui;
 
-import userInterface.coachcommands.CreateCoachCommand;
-import userInterface.coachcommands.DeleteCoachCommand;
-import userInterface.coachcommands.ShowAllCoachesCommand;
-import userInterface.coachcommands.UpdateCoachCommand;
-import userInterface.sportsmancommands.CreatSporstmanCommand;
-import userInterface.sportsmancommands.DeleteSportsmanCommand;
-import userInterface.sportsmancommands.ShowAllSportsmenCommand;
-import userInterface.sportsmancommands.UpdateSportsmanCommand;
+import ui.coachcommands.CreateCoachCommand;
+import ui.coachcommands.DeleteCoachCommand;
+import ui.coachcommands.ShowAllCoachesCommand;
+import ui.coachcommands.UpdateCoachCommand;
+import ui.sportsmancommands.CreatSporstmanCommand;
+import ui.sportsmancommands.DeleteSportsmanCommand;
+import ui.sportsmancommands.ShowAllSportsmenCommand;
+import ui.sportsmancommands.UpdateSportsmanCommand;
 
 import java.util.List;
 

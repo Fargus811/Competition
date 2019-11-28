@@ -10,6 +10,8 @@ public class SportsmanService {
 
     private static SportsmanService instance;
 
+    SportsmanRepository sportsmanRepository = InMemorySportsmanRepository.getInstance();
+
     private SportsmanService(){
 
     }
@@ -20,7 +22,6 @@ public class SportsmanService {
         return instance;
     }
 
-    SportsmanRepository sportsmanRepository = InMemorySportsmanRepository.getInstance();
 
     public List<Sportsman> findAll(){
         return sportsmanRepository.findAll();

@@ -1,4 +1,4 @@
-package userInterface;
+package ui;
 
 import entity.Role;
 import entity.User;

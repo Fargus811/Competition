@@ -1,10 +1,10 @@
-package userInterface.coachcommands;
+package ui.coachcommands;
 
 import entity.Coach;
 import service.CoachService;
-import userInterface.Command;
-import userInterface.CommandResult;
-import userInterface.ShowAdminActionsCommand;
+import ui.Command;
+import ui.CommandResult;
+import ui.ShowAdminActionsCommand;
 
 import java.util.List;
 

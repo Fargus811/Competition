@@ -10,6 +10,8 @@ public class CoachService {
 
     private static CoachService instance;
 
+    CoachRepository coachRepository = InMemoryCoachRepository.getInstance();
+
     private CoachService(){
 
     }
@@ -20,11 +22,12 @@ public class CoachService {
         return instance;
     }
 
-    CoachRepository coachRepository = InMemoryCoachRepository.getInstance();
 
     public List<Coach> findAll(){
         return coachRepository.findAll();
     }
 
+    public Coach createCoach(){
 
+    }
 }

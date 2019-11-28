@@ -2,7 +2,7 @@ package entity;
 
 import java.util.Objects;
 
-public class Coach {
+public class Coach z{
     private int id;
     private String firstName;
     private String lastName;
