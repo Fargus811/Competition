@@ -12,6 +12,8 @@ public class ShowAllCoachesCommand implements Command {
 
     CoachService coachService = CoachService.getInstance();
 
+
+
     @Override
     public String getInstruction() {
         return "Список тренеров:";
