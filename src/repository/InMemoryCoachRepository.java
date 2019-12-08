@@ -12,14 +12,15 @@ public class InMemoryCoachRepository implements CoachRepository {
 
     private static int counter = 0;
 
-    private static InMemoryCoachRepository instance ;
+    private static InMemoryCoachRepository instance;
+    FileConfigurator coachFileConfig = new FileConfigurator();
 
-    private InMemoryCoachRepository(){
+    private InMemoryCoachRepository() {
 
     }
 
-    public static InMemoryCoachRepository getInstance(){
-        if(instance == null){
+    public static InMemoryCoachRepository getInstance() {
+        if (instance == null) {
             instance = new InMemoryCoachRepository();
         }
         return instance;
@@ -53,9 +54,16 @@ public class InMemoryCoachRepository implements CoachRepository {
 
     @Override
     public void save(Coach coach) {
+        boolean success;
         coach.setId(counter);
-        coachList.add(coach);
-        counter++;
+        coachFileConfig.filesExist();
+        success = coachFileConfig.setDataToFile(coachFileConfig.getCoachFile(), coach);
+        if (success) {
+            coachList.add(coach);
+            counter++;
+        } else {
+            System.err.println("Почини руки");
+        }
     }
 
     @Override

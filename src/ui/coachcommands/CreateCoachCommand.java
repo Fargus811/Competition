@@ -9,7 +9,11 @@ import java.util.List;
 
 public class CreateCoachCommand implements Command {
 
-    CoachService coachService = CoachService.getInstance();
+    private static final String[] paramInstructions = new String[]{"Ввeдите фамилию тренера", "Введите имя тренера",
+            "Введите востраст тренера", "Введите пол тренара: MALE или FEMALE", "Введите старну тренера"
+            , "Введите стоимость одной тренировки"};
+
+    private CoachService coachService = CoachService.getInstance();
 
     String result = "Тренер добавлен в список";
 
@@ -19,13 +23,18 @@ public class CreateCoachCommand implements Command {
     }
 
     @Override
-    public int paramsNumber() {
-        return 0;
+    public int getParamNumber() {
+        return paramInstructions.length;
+    }
+
+    @Override
+    public String[] getParamInstruction() {
+        return paramInstructions;
     }
 
     @Override
     public CommandResult process(List<String> params) {
-        coachService.createCoach();
+        coachService.createCoach(params);
         return new CommandResult(new ShowAdminActionsCommand(), result);
 
     }

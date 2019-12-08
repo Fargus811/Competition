@@ -2,7 +2,7 @@ package entity;
 
 import java.util.Objects;
 
-public class Coach z{
+public class Coach {
     private int id;
     private String firstName;
     private String lastName;
@@ -19,18 +19,21 @@ public class Coach z{
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.cost=cost;
+        this.cost = cost;
         this.country = country;
         this.sex = sex;
-        this.rank=rank;
+        this.rank = rank;
     }
+
     public int getId() {
         return id;
     }
+
     public int getCost() {
         return cost;
     }
-    public void setCost(){
+
+    public void setCost(int cost) {
         this.cost = cost;
 
     }
@@ -38,7 +41,6 @@ public class Coach z{
     public void setId(int id) {
         this.id = id;
     }
-
 
     public Sex getSex() {
         return sex;
@@ -90,6 +92,10 @@ public class Coach z{
                 ", country='" + country + '\'' +
                 ", sex=" + sex +
                 '}';
+    }
+
+    public String parseToDbString() {
+        return id + ";" + firstName + ";" + lastName + ";" + age + ";" + sex + ";" + country + ";" + cost + ";" + "\n";
     }
 
     @Override

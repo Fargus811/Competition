@@ -6,7 +6,9 @@ public interface Command {
 
     String getInstruction();
 
-    int paramsNumber();
+    int getParamNumber();
+
+    String[] getParamInstruction();
 
     CommandResult process(List<String> params);
 }

@@ -8,8 +8,9 @@ import ui.ShowAdminActionsCommand;
 import java.util.List;
 
 public class CreatSporstmanCommand implements Command {
-
     SportsmanService sportsmanService = SportsmanService.getInstance();
+
+    String[] paramsInstruction = new String[]{"k"};
 
     String result = "Спортсмен добавлен в список";
 
@@ -19,8 +20,13 @@ public class CreatSporstmanCommand implements Command {
     }
 
     @Override
-    public int paramsNumber() {
+    public int getParamNumber() {
         return 0;
+    }
+
+    @Override
+    public String[] getParamInstruction() {
+        return new String[0];
     }
 
     @Override

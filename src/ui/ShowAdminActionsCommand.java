@@ -1,9 +1,9 @@
 package ui;
 
 import ui.coachcommands.CreateCoachCommand;
-import ui.coachcommands.DeleteCoachCommand;
+//import ui.coachcommands.DeleteCoachCommand;
 import ui.coachcommands.ShowAllCoachesCommand;
-import ui.coachcommands.UpdateCoachCommand;
+//import ui.coachcommands.UpdateCoachCommand;
 import ui.sportsmancommands.CreatSporstmanCommand;
 import ui.sportsmancommands.DeleteSportsmanCommand;
 import ui.sportsmancommands.ShowAllSportsmenCommand;
@@ -30,8 +30,13 @@ public class ShowAdminActionsCommand implements Command {
     }
 
     @Override
-    public int paramsNumber() {
+    public int getParamNumber() {
         return 1;
+    }
+
+    @Override
+    public String[] getParamInstruction() {
+        return new String[0];
     }
 
     @Override
@@ -59,16 +64,16 @@ public class ShowAdminActionsCommand implements Command {
                 commandResult = new CommandResult(new CreatSporstmanCommand(),null);
                 break;
 
-            case "6":
-                commandResult = new CommandResult(new DeleteCoachCommand(),null);
-                break;
+//            case "6":
+//                commandResult = new CommandResult(new DeleteCoachCommand(),null);
+//                break;
 
             case "7":
                 commandResult = new CommandResult(new DeleteSportsmanCommand(),null);
 
-            case "8":
-                commandResult = new CommandResult(new UpdateCoachCommand(),null);
-                break;
+//            case "8":
+//                commandResult = new CommandResult(new UpdateCoachCommand(),null);
+//                break;
 
             case "9":
                 commandResult = new CommandResult(new UpdateSportsmanCommand(),null);

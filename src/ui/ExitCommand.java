@@ -10,8 +10,13 @@ public class ExitCommand implements Command {
     }
 
     @Override
-    public int paramsNumber() {
+    public int getParamNumber() {
         return 0;
+    }
+
+    @Override
+    public String[] getParamInstruction() {
+        return new String[0];
     }
 
     @Override

@@ -6,7 +6,6 @@ import repository.CoachRepository;
 import repository.InMemoryCoachRepository;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class CoachService {
 
@@ -14,53 +13,39 @@ public class CoachService {
 
     CoachRepository coachRepository = InMemoryCoachRepository.getInstance();
 
-    private CoachService(){
+    private CoachService() {
 
     }
-    public static CoachService getInstance(){
-        if(instance == null){
+
+    public static CoachService getInstance() {
+        if (instance == null) {
             instance = new CoachService();
         }
         return instance;
     }
 
 
-    public List<Coach> findAll(){
+    public List<Coach> findAll() {
         return coachRepository.findAll();
     }
 
-    public void createCoach(){
+    public void createCoach(List<String> params) {
+        try {
 
-        Coach coach = new Coach();
+            int age = Integer.parseInt(params.get(2));
+            int cost = Integer.parseInt(params.get(5));
+            Sex sex = Sex.valueOf(params.get(3));
+            Coach coach = new Coach();
+            coach.setFirstname(params.get(0));
+            coach.setLastName(params.get(1));
+            coach.setAge(age);
+            coach.setSex(sex);
+            coach.setCountry(params.get(4));
+            coach.setCost(cost);
+            coachRepository.save(coach);
+        } catch (Exception e) {
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Ввeдите фамилию тренера");
-
-        coach.setFirstname(scanner.next());
-
-        System.out.println("Введите имя тренера");
-
-        coach.setLastName(scanner.next());
-
-        System.out.println("Введите востраст тренера");
-
-        coach.setAge(scanner.nextInt());
-
-        System.out.println("Введите пол тренара: MALE или FEMALE");
-
-        coach.setSex(Sex.valueOf(scanner.next()));
-
-        System.out.println("Введите старну тренера");
-
-        coach.setCountry(scanner.next());
-
-        System.out.println("Введите стоимость одной тренировки");
-
-        coach.setCost();
-
-        coachRepository.save(coach);
-
+        }
 
     }
 }
