@@ -1,4 +1,4 @@
-package ui;
+package ui.command;
 
 import service.UserService;
 
@@ -14,7 +14,7 @@ public class ShowAllUsersCommand implements Command{
     }
 
     @Override
-    public int getParamNumber() {
+    public int getParamsNumber() {
         return 0;
     }
 

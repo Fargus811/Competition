@@ -56,8 +56,8 @@ public class InMemoryCoachRepository implements CoachRepository {
     public void save(Coach coach) {
         boolean success;
         coach.setId(counter);
-        coachFileConfig.filesExist();
-        success = coachFileConfig.setDataToFile(coachFileConfig.getCoachFile(), coach);
+        coachFileConfig.initFiles();
+        success = coachFileConfig.writeDataToFile(coachFileConfig.getCoachFile(), coach);
         if (success) {
             coachList.add(coach);
             counter++;

@@ -1,15 +1,16 @@
-package ui;
+package ui.command;
 
-import ui.coachcommands.CreateCoachCommand;
-//import ui.coachcommands.DeleteCoachCommand;
-import ui.coachcommands.ShowAllCoachesCommand;
-//import ui.coachcommands.UpdateCoachCommand;
-import ui.sportsmancommands.CreatSporstmanCommand;
-import ui.sportsmancommands.DeleteSportsmanCommand;
-import ui.sportsmancommands.ShowAllSportsmenCommand;
-import ui.sportsmancommands.UpdateSportsmanCommand;
+import ui.command.coach.CreateCoachCommand;
+import ui.command.coach.ShowAllCoachesCommand;
+import ui.command.sportsman.CreatSporstmanCommand;
+import ui.command.sportsman.DeleteSportsmanCommand;
+import ui.command.sportsman.ShowAllSportsmenCommand;
+import ui.command.sportsman.UpdateSportsmanCommand;
 
 import java.util.List;
+
+//import ui.command.coach.DeleteCoachCommand;
+//import ui.command.coach.UpdateCoachCommand;
 
 public class ShowAdminActionsCommand implements Command {
 
@@ -30,7 +31,7 @@ public class ShowAdminActionsCommand implements Command {
     }
 
     @Override
-    public int getParamNumber() {
+    public int getParamsNumber() {
         return 1;
     }
 

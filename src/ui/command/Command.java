@@ -1,4 +1,4 @@
-package ui;
+package ui.command;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ public interface Command {
 
     String getInstruction();
 
-    int getParamNumber();
+    int getParamsNumber();
 
     String[] getParamInstruction();
 

@@ -1,16 +1,18 @@
-package ui;
+package ui.command.sportsman;
+
+import ui.command.Command;
+import ui.command.CommandResult;
 
 import java.util.List;
 
-public class ExitCommand implements Command {
-
+public class DeleteSportsmanCommand implements Command {
     @Override
     public String getInstruction() {
         return null;
     }
 
     @Override
-    public int getParamNumber() {
+    public int getParamsNumber() {
         return 0;
     }
 
@@ -21,6 +23,6 @@ public class ExitCommand implements Command {
 
     @Override
     public CommandResult process(List<String> params) {
-        return new CommandResult(null, null);
+        return null;
     }
 }

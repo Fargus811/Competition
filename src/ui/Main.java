@@ -1,6 +1,10 @@
 package ui;
 
 import repository.FileConfigurator;
+import ui.command.Command;
+import ui.command.CommandResult;
+import ui.command.ExitCommand;
+import ui.command.LoginCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
 
         FileConfigurator dbManager = new FileConfigurator();
-        System.out.println(dbManager.filesExist());
+        System.out.println(dbManager.initFiles());
 
         Scanner scanner = new Scanner(System.in);
         Command currentCommand = new LoginCommand();
@@ -19,12 +23,12 @@ public class Main {
             System.out.println(currentCommand.getInstruction());
             List<String> params = new ArrayList<>();
             String[] paramInstruction = currentCommand.getParamInstruction();
-            for (int i = 0; i < currentCommand.getParamNumber(); i++) {
+            for (int i = 0; i < currentCommand.getParamsNumber(); i++) {
                 if (paramInstruction.length != 0) {
                     System.out.println(paramInstruction[i]);
                 }
                 String input = scanner.next();
-                if ("exit".equals(scanner)) {
+                if ("exit".equals(input)) {
                     currentCommand = new ExitCommand();
 
                 }

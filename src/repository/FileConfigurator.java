@@ -8,46 +8,37 @@ import java.io.IOException;
 
 public class FileConfigurator {
 
-    private static final String dirPath = "/Users/mac/Downloads/MyProjects/Competition/database";
+    private static final String DIR_PATH = "/Users/mac/Downloads/MyProjects/Competition/database";
     private File coachFile;
     private File sportsmenFile;
     private File allUsersFile;
 
-    public boolean filesExist() {
+    public boolean initFiles() {
+        boolean createdCoachFile;
+        boolean createdSportsmenFile;
+        boolean createdAllUsersFile;
+        createdSportsmenFile = createFileIfNotExists(sportsmenFile, "sportsmenList.txt");
+        createdCoachFile = createFileIfNotExists(coachFile, "coachList.txt");
+        createdAllUsersFile = createFileIfNotExists(allUsersFile, "allUsersList.txt");
+
+        return createdAllUsersFile && createdCoachFile && createdSportsmenFile;
+    }
+
+    private boolean createFileIfNotExists(File file, String fileName) {
         boolean created = true;
-        coachFile = new File(dirPath + File.separator + "coachList.txt");
-        if (!coachFile.exists()) {
+        file = new File(DIR_PATH + File.separator + fileName);
+        if (!file.exists()) {
             try {
-                created = coachFile.createNewFile();
+                created = file.createNewFile();
             } catch (IOException e) {
-                System.err.println("FileConfigurator.fileExist(); Coach file cannot be created");
-                e.printStackTrace();
-            }
-        }
-
-        sportsmenFile = new File(dirPath + File.separator + "sportsmenList.txt");
-        if (!sportsmenFile.exists()) {
-            try {
-                created = sportsmenFile.createNewFile();
-            } catch (IOException e) {
-                System.err.println("FileConfigurator.fileExist(); Coach file cannot be created");
-                e.printStackTrace();
-            }
-        }
-
-        allUsersFile = new File(dirPath + File.separator + "allUsersFileList.txt");
-        if (!allUsersFile.exists()) {
-            try {
-                created = allUsersFile.createNewFile();
-            } catch (IOException e) {
-                System.err.println("FileConfigurator.fileExist(); Coach file cannot be created");
+                System.err.println("FileConfigurator.fileExist();" + fileName + " file cannot be created");
                 e.printStackTrace();
             }
         }
         return created;
     }
 
-    boolean setDataToFile(File fileToSave, Object userdata) {
+    boolean writeDataToFile(File fileToSave, Object userdata) {
         if (!fileToSave.exists()) {
             System.out.println("Что-то пошло не так? Вы удалили файл или перенесли его");
             return false;

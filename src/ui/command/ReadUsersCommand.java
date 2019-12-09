@@ -1,4 +1,4 @@
-package ui;
+package ui.command;
 
 import entity.Role;
 import entity.User;
@@ -14,7 +14,7 @@ public class ReadUsersCommand implements Command {
     }
 
     @Override
-    public int getParamNumber() {
+    public int getParamsNumber() {
         return 0;
     }
 

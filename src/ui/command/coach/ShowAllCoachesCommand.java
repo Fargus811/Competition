@@ -1,10 +1,10 @@
-package ui.coachcommands;
+package ui.command.coach;
 
 import entity.Coach;
 import service.CoachService;
-import ui.Command;
-import ui.CommandResult;
-import ui.ShowAdminActionsCommand;
+import ui.command.Command;
+import ui.command.CommandResult;
+import ui.command.ShowAdminActionsCommand;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class ShowAllCoachesCommand implements Command {
     }
 
     @Override
-    public int getParamNumber() {
+    public int getParamsNumber() {
         return 0;
     }
 

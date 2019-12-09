@@ -1,16 +1,16 @@
-package ui.sportsmancommands;
+package ui.command.sportsman;
 
 import entity.Sportsman;
 import service.SportsmanService;
-import ui.Command;
-import ui.CommandResult;
-import ui.ShowAdminActionsCommand;
+import ui.command.Command;
+import ui.command.CommandResult;
+import ui.command.ShowAdminActionsCommand;
 
 import java.util.List;
 
 public class ShowAllSportsmenCommand implements Command {
 
-    SportsmanService sportsmanService = SportsmanService.getInstance();
+    private static SportsmanService sportsmanService = SportsmanService.getInstance();
 
     @Override
     public String getInstruction() {
@@ -18,7 +18,7 @@ public class ShowAllSportsmenCommand implements Command {
     }
 
     @Override
-    public int getParamNumber() {
+    public int getParamsNumber() {
         return 0;
     }
 

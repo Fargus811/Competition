@@ -10,7 +10,7 @@ public class SportsmanService {
 
     private static SportsmanService instance;
 
-    SportsmanRepository sportsmanRepository = InMemorySportsmanRepository.getInstance();
+    private SportsmanRepository sportsmanRepository = InMemorySportsmanRepository.getInstance();
 
     private SportsmanService(){
 

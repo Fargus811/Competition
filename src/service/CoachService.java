@@ -11,7 +11,7 @@ public class CoachService {
 
     private static CoachService instance;
 
-    CoachRepository coachRepository = InMemoryCoachRepository.getInstance();
+    private CoachRepository coachRepository = InMemoryCoachRepository.getInstance();
 
     private CoachService() {
 
@@ -44,7 +44,7 @@ public class CoachService {
             coach.setCost(cost);
             coachRepository.save(coach);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
     }

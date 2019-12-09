@@ -1,5 +1,3 @@
-package ui.coachcommands;
-
-import ui.Command;
+package ui.command.coach;
 
 //public class UpdateCoachCommand implements Command {}

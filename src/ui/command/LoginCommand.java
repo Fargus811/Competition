@@ -1,19 +1,21 @@
-package ui;
+package ui.command;
 
 import service.UserService;
 
 import java.util.List;
 
 public class LoginCommand implements Command {
+    public static final String ENTER_LOGIN_AND_PASSWORD = "Введидте логин и пароль:";
+
     private UserService userService = UserService.getInstance();
 
     @Override
     public String getInstruction() {
-        return "Введидте логин и пароль:";
+        return ENTER_LOGIN_AND_PASSWORD;
     }
 
     @Override
-    public int getParamNumber() {
+    public int getParamsNumber() {
         return 2;
     }
 

@@ -1,7 +1,7 @@
-package ui.sportsmancommands;
+package ui.command.sportsman;
 
-import ui.Command;
-import ui.CommandResult;
+import ui.command.Command;
+import ui.command.CommandResult;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class UpdateSportsmanCommand implements Command {
     }
 
     @Override
-    public int getParamNumber() {
+    public int getParamsNumber() {
         return 0;
     }
 

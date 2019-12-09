@@ -5,8 +5,4 @@ public enum Role {
     COACH,
     SPORTSMEN;
 
-    public void sayHello() {
-        System.out.println("Hello from" + this);
-    }
-
 }
