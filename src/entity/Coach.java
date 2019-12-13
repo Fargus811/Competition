@@ -3,7 +3,7 @@ package entity;
 import java.util.Objects;
 
 public class Coach {
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
     private int age;
@@ -25,7 +25,7 @@ public class Coach {
         this.rank = rank;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -38,7 +38,7 @@ public class Coach {
 
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

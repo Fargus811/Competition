@@ -9,9 +9,9 @@ import java.io.IOException;
 public class FileConfigurator {
 
     private static final String DIR_PATH = "/Users/mac/Downloads/MyProjects/Competition/database";
-    private File coachFile;
-    private File sportsmenFile;
-    private File allUsersFile;
+    private File coachFile =new File(DIR_PATH + File.separator + "coachList.txt");
+    private File sportsmenFile = new File(DIR_PATH + File.separator + "sportsmenList.txt");
+    private File allUsersFile = new File(DIR_PATH + File.separator + "allUsersList.txt");
 
     public boolean initFiles() {
         boolean createdCoachFile;
@@ -26,7 +26,6 @@ public class FileConfigurator {
 
     private boolean createFileIfNotExists(File file, String fileName) {
         boolean created = true;
-        file = new File(DIR_PATH + File.separator + fileName);
         if (!file.exists()) {
             try {
                 created = file.createNewFile();

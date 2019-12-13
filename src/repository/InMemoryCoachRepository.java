@@ -1,6 +1,7 @@
 package repository;
 
 import entity.Coach;
+import file.CoachFileReader;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,8 +10,6 @@ import java.util.List;
 public class InMemoryCoachRepository implements CoachRepository {
 
     private List<Coach> coachList = new ArrayList<>();
-
-    private static int counter = 0;
 
     private static InMemoryCoachRepository instance;
     FileConfigurator coachFileConfig = new FileConfigurator();
@@ -55,13 +54,10 @@ public class InMemoryCoachRepository implements CoachRepository {
     @Override
     public void save(Coach coach) {
         boolean success;
-        coach.setId(counter);
         coachFileConfig.initFiles();
+        coach.setId(CoachFileReader.readMaxId()+1);
         success = coachFileConfig.writeDataToFile(coachFileConfig.getCoachFile(), coach);
-        if (success) {
-            coachList.add(coach);
-            counter++;
-        } else {
+        if (!success) {
             System.err.println("Почини руки");
         }
     }
@@ -78,9 +74,5 @@ public class InMemoryCoachRepository implements CoachRepository {
         int index = coachList.indexOf(fake);
         return coachList.get(index);
     }
-
-    public static int getCounter() {
-        return counter;
-    }
-
 }
+

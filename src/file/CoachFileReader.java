@@ -6,26 +6,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CompetitionFileReader {
+public class CoachFileReader {
 
-    public static long readMaxId(File file) {
-        readAllLines();
+    public static long readMaxId() {
+        List<String> lines =readAllLines();
+        long maxId = 0;
+        for (String line : lines
+        ) {
+            long currentLineid;
+            try {
+                currentLineid = retrieveIdfromString(line);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid line found");
+                continue;
+            }
+            if (currentLineid > maxId) {
+                maxId = currentLineid;
+            }
 
-
-
+        }
+        return maxId;
     }
 
-    private static void readAllLines() {
+    private static List<String> readAllLines() {
         List<String> list = new ArrayList<>();
         Scanner in = null;
         try {
-            in = new Scanner(new File());
+            in = new Scanner(new File("/Users/mac/Downloads/MyProjects/Competition/database/coachList.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         while (in.hasNextLine()) {
             list.add(in.nextLine());
         }
+        return list;
     }
 
     private static long retrieveIdfromString(String string){
