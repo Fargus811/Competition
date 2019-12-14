@@ -48,4 +48,14 @@ public class CoachService {
         }
 
     }
+
+    public void deleteById(long id){
+        Coach coach = coachRepository.findById(id);
+        if (coach == null){
+            System.out.println("Пользователь с таким id:"+ id + " не найден");
+        }else {
+            coachRepository.deleteById(id);
+        }
+
+    }
 }

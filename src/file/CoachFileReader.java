@@ -9,13 +9,13 @@ import java.util.Scanner;
 public class CoachFileReader {
 
     public static long readMaxId() {
-        List<String> lines =readAllLines();
+        List<String> lines = readAllLines();
         long maxId = 0;
         for (String line : lines
         ) {
             long currentLineid;
             try {
-                currentLineid = retrieveIdfromString(line);
+                currentLineid = Long.parseLong(retrieveIdfromString(line));
             } catch (NumberFormatException e) {
                 System.out.println("Invalid line found");
                 continue;
@@ -28,22 +28,46 @@ public class CoachFileReader {
         return maxId;
     }
 
-    private static List<String> readAllLines() {
+    public static List<String> readAllLines() {
         List<String> list = new ArrayList<>();
         Scanner in = null;
         try {
             in = new Scanner(new File("/Users/mac/Downloads/MyProjects/Competition/database/coachList.txt"));
+            while (in.hasNextLine()) {
+                list.add(in.nextLine());
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            if (in != null) {
+                in.close();
+            }
         }
-        while (in.hasNextLine()) {
-            list.add(in.nextLine());
-        }
+
         return list;
     }
 
-    private static long retrieveIdfromString(String string){
-        String[] strings = string.split(";");
-        return Long.parseLong(strings[0]);
+
+    private static String retrieveIdfromString(String string) {
+        return string.split(";")[0];
+    }
+
+    public static String readLineById(String id) {
+        List<String> lines = readAllLines();
+        for (String line : lines
+        ) {
+            String currentLineid;
+            try {
+                currentLineid = retrieveIdfromString(line);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid line found");
+                continue;
+            }
+            if (currentLineid.equals(id)) {
+                return line;
+            }
+
+        }
+        return null;
     }
 }

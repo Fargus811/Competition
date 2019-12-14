@@ -1,6 +1,7 @@
 package ui.command;
 
 import ui.command.coach.CreateCoachCommand;
+import ui.command.coach.DeleteCoachCommand;
 import ui.command.coach.ShowAllCoachesCommand;
 import ui.command.sportsman.CreatSporstmanCommand;
 import ui.command.sportsman.DeleteSportsmanCommand;
@@ -65,9 +66,9 @@ public class ShowAdminActionsCommand implements Command {
                 commandResult = new CommandResult(new CreatSporstmanCommand(),null);
                 break;
 
-//            case "6":
-//                commandResult = new CommandResult(new DeleteCoachCommand(),null);
-//                break;
+            case "6":
+               commandResult = new CommandResult(new DeleteCoachCommand(),null);
+               break;
 
             case "7":
                 commandResult = new CommandResult(new DeleteSportsmanCommand(),null);

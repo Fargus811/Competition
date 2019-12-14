@@ -1,7 +1,9 @@
 package repository;
 
 import entity.Coach;
+import entity.Sex;
 import file.CoachFileReader;
+import file.CoachFileWriter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,10 +54,35 @@ public class InMemoryCoachRepository implements CoachRepository {
     }
 
     @Override
+    public void deleteById(long id) {
+        List<String> allLines = CoachFileReader.readAllLines();
+        allLines.remove(CoachFileReader.readLineById(String.valueOf(id)));
+        CoachFileWriter.writeLinesToFile(allLines);
+    }
+
+    @Override
+    public Coach buildCoach(String coach) {
+        String[] coachParts = coach.split(";");
+        Coach coachResult = new Coach();
+        coachResult.setId(Long.parseLong(coachParts[0]));
+        int age = Integer.parseInt(coachParts[3]);
+        int cost = Integer.parseInt(coachParts[6]);
+        Sex sex = Sex.valueOf(coachParts[4]);
+        coachResult.setFirstname(coachParts[1]);
+        coachResult.setLastName(coachParts[2]);
+        coachResult.setAge(age);
+        coachResult.setSex(sex);
+        coachResult.setCountry(coachParts[5]);
+        coachResult.setCost(cost);
+
+        return coachResult;
+    }
+
+    @Override
     public void save(Coach coach) {
         boolean success;
         coachFileConfig.initFiles();
-        coach.setId(CoachFileReader.readMaxId()+1);
+        coach.setId(CoachFileReader.readMaxId() + 1);
         success = coachFileConfig.writeDataToFile(coachFileConfig.getCoachFile(), coach);
         if (!success) {
             System.err.println("Почини руки");
@@ -68,11 +95,13 @@ public class InMemoryCoachRepository implements CoachRepository {
     }
 
     @Override
-    public Coach findById(int id) {
-        Coach fake = new Coach();
-        fake.setId(id);
-        int index = coachList.indexOf(fake);
-        return coachList.get(index);
+    public Coach findById(long id) {
+        coachFileConfig.initFiles();
+        String coachString = CoachFileReader.readLineById(String.valueOf(id));
+        return coachString == null ? null : buildCoach(coachString);
+
     }
+
+
 }
 

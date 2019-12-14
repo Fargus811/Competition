@@ -11,7 +11,11 @@ public interface CoachRepository {
 
     List<Coach> findCoachByAge(int age);
 
-    Coach findById(int id);
+    Coach findById(long id);
 
     List<Coach> findByCost(int cost);
+
+    void deleteById(long id);
+
+    Coach buildCoach(String coach);
 }
