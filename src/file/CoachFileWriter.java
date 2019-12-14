@@ -1,5 +1,7 @@
 package file;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -10,10 +12,9 @@ public class CoachFileWriter {
         FileWriter fileWriter = null;
         try {
              fileWriter = new FileWriter("/Users/mac/Downloads/MyProjects/Competition/database/coachList.txt");
-            for (String line:lines
-                 ) {
-                fileWriter.write(line +"\n");
-            }
+
+                fileWriter.write(StringUtils.join(lines,"\n"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
