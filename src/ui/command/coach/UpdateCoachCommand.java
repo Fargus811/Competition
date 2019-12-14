@@ -1,3 +1,41 @@
 package ui.command.coach;
 
-//public class UpdateCoachCommand implements Command {}
+import service.CoachService;
+import ui.command.Command;
+import ui.command.CommandResult;
+import ui.command.ShowAdminActionsCommand;
+
+import java.util.List;
+
+public class UpdateCoachCommand implements Command {
+
+    private static final String RESULT = "Информация о тренере успешно обновлена";
+
+    private CoachService coachService = CoachService.getInstance();
+
+
+    private static final String[] paramInstructions = new String[]{"Введите id тренера", "Ввeдите фамилию тренера", "Введите имя тренера",
+            "Введите востраст тренера", "Введите пол тренара: MALE или FEMALE", "Введите старну тренера"
+            , "Введите стоимость одной тренировки"};
+
+    @Override
+    public String getInstruction() {
+        return "Начинаем обновлять информацию о тренере";
+    }
+
+    @Override
+    public int getParamsNumber() {
+        return paramInstructions.length;
+    }
+
+    @Override
+    public String[] getParamInstruction() {
+        return paramInstructions;
+    }
+
+    @Override
+    public CommandResult process(List<String> params) {
+        coachService.update(params);
+        return new CommandResult(new ShowAdminActionsCommand(), RESULT);
+    }
+}

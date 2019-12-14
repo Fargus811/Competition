@@ -58,4 +58,24 @@ public class CoachService {
         }
 
     }
+    public void update(List<String> params){
+        try {
+
+            int age = Integer.parseInt(params.get(3));
+            int cost = Integer.parseInt(params.get(6));
+            Sex sex = Sex.valueOf(params.get(4));
+            Coach coach = new Coach();
+            coach.setId(Long.parseLong(params.get(0)));
+            coach.setFirstname(params.get(1));
+            coach.setLastName(params.get(2));
+            coach.setAge(age);
+            coach.setSex(sex);
+            coach.setCountry(params.get(5));
+            coach.setCost(cost);
+            coachRepository.update(coach);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

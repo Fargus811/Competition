@@ -18,4 +18,6 @@ public interface CoachRepository {
     void deleteById(long id);
 
     Coach buildCoach(String coach);
+
+    void update(Coach coach);
 }

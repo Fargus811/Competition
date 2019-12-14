@@ -48,7 +48,7 @@ public class CoachFileReader {
     }
 
 
-    private static String retrieveIdfromString(String string) {
+    public static String retrieveIdfromString(String string) {
         return string.split(";")[0];
     }
 

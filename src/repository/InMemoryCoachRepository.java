@@ -78,6 +78,22 @@ public class InMemoryCoachRepository implements CoachRepository {
     }
 
     @Override
+    public void update(Coach coach) {
+        String coachId = String.valueOf(coach.getId());
+        coachFileConfig.initFiles();
+        List<String> coachLines = CoachFileReader.readAllLines();
+        List<String> coachResult = new ArrayList<>();
+        for (String line : coachLines
+        ) {
+            if (!CoachFileReader.retrieveIdfromString(line).equals(coachId)) {
+                coachResult.add(line);
+            }
+        }
+        coachResult.add(coach.parseToDbString());
+        CoachFileWriter.writeLinesToFile(coachResult);
+    }
+
+    @Override
     public void save(Coach coach) {
         boolean success;
         coachFileConfig.initFiles();
@@ -92,8 +108,8 @@ public class InMemoryCoachRepository implements CoachRepository {
     public List<Coach> findAll() {
         List<String> coachLines = CoachFileReader.readAllLines();
         List<Coach> coachResult = new ArrayList<>();
-        for (String line:coachLines
-             ) {
+        for (String line : coachLines
+        ) {
             coachResult.add(buildCoach(line));
         }
         return coachResult;

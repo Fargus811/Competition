@@ -12,7 +12,7 @@ public class CoachFileWriter {
              fileWriter = new FileWriter("/Users/mac/Downloads/MyProjects/Competition/database/coachList.txt");
             for (String line:lines
                  ) {
-                fileWriter.write(line);
+                fileWriter.write(line +"\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

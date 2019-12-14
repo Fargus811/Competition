@@ -1,3 +1,3 @@
-2;Sergeev;Daniil;22;MALE;Belarus;345;
-3;Sergeev;Daniil;22;MALE;Belarus;346;
-4;Sergeev;Daniil;22;MALE;Belarus;347;
+1;Sergeev;Daniil;22;MALE;Belarus;345;
+4;Kyanetsov;Nekit;23;MALE;Belarus;111;
+2;Osipov;Vlad;222;MALE;Russia;444;
