@@ -35,7 +35,7 @@ public class ShowAllCoachesCommand implements Command {
         StringBuilder result = new StringBuilder();
         for (Coach coach : all) {
             result.append(coach);
-            result.append("/n");
+            result.append("\n");
         }
         if (all.size() == 0){
             result.append("Пустой список");

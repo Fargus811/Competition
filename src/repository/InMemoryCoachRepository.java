@@ -6,7 +6,6 @@ import file.CoachFileReader;
 import file.CoachFileWriter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class InMemoryCoachRepository implements CoachRepository {
@@ -91,7 +90,13 @@ public class InMemoryCoachRepository implements CoachRepository {
 
     @Override
     public List<Coach> findAll() {
-        return Collections.unmodifiableList(coachList);
+        List<String> coachLines = CoachFileReader.readAllLines();
+        List<Coach> coachResult = new ArrayList<>();
+        for (String line:coachLines
+             ) {
+            coachResult.add(buildCoach(line));
+        }
+        return coachResult;
     }
 
     @Override
