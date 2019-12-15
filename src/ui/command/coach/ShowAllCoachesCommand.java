@@ -10,13 +10,13 @@ import java.util.List;
 
 public class ShowAllCoachesCommand implements Command {
 
+    private static final String INSTRUCTION = "Список тренеров:";
+
     CoachService coachService = CoachService.getInstance();
-
-
 
     @Override
     public String getInstruction() {
-        return "Список тренеров:";
+        return INSTRUCTION;
     }
 
     @Override
@@ -37,10 +37,10 @@ public class ShowAllCoachesCommand implements Command {
             result.append(coach);
             result.append("\n");
         }
-        if (all.size() == 0){
+        if (all.size() == 0) {
             result.append("Пустой список");
         }
-       return new CommandResult(new ShowAdminActionsCommand(), result.toString());
+        return new CommandResult(new ShowAdminActionsCommand(), result.toString());
 
     }
 

@@ -85,7 +85,7 @@ public class InMemoryCoachRepository implements CoachRepository {
         List<String> coachResult = new ArrayList<>();
         for (String line : coachLines
         ) {
-            if (!CoachFileReader.retrieveIdfromString(line).equals(coachId)) {
+            if (!CoachFileReader.retrieveIdFromString(line).equals(coachId)) {
                 coachResult.add(line);
             }
         }

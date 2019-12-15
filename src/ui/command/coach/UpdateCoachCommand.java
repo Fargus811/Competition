@@ -9,6 +9,8 @@ import java.util.List;
 
 public class UpdateCoachCommand implements Command {
 
+    private static final String INSTRUCTION = "Начинаем обновлять информацию о тренере";
+
     private static final String RESULT = "Информация о тренере успешно обновлена";
 
     private CoachService coachService = CoachService.getInstance();
@@ -20,7 +22,7 @@ public class UpdateCoachCommand implements Command {
 
     @Override
     public String getInstruction() {
-        return "Начинаем обновлять информацию о тренере";
+        return INSTRUCTION;
     }
 
     @Override

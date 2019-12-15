@@ -9,6 +9,8 @@ import java.util.List;
 
 public class CreateCoachCommand implements Command {
 
+    private static final String INSTRUCTION = "Начинаем создавать тренера";
+
     private static final String RESULT = "Тренер добавлен в список";
 
     private static final String[] paramInstructions = new String[]{"Ввeдите фамилию тренера", "Введите имя тренера",
@@ -19,7 +21,7 @@ public class CreateCoachCommand implements Command {
 
     @Override
     public String getInstruction() {
-        return "Начинаем создавать тренера";
+        return INSTRUCTION;
     }
 
     @Override

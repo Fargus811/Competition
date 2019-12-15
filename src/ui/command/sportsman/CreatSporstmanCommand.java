@@ -9,11 +9,11 @@ import java.util.List;
 
 public class CreatSporstmanCommand implements Command {
 
+    private static final String RESULT ="Спортсмен добавлен в список";
+
     private static SportsmanService sportsmanService = SportsmanService.getInstance();
 
     String[] paramsInstruction = new String[]{"k"};
-
-    String result = "Спортсмен добавлен в список";
 
     @Override
     public String getInstruction() {
@@ -32,6 +32,6 @@ public class CreatSporstmanCommand implements Command {
 
     @Override
     public CommandResult process(List<String> params) {
-        return new CommandResult(new ShowAdminActionsCommand(), result);
+        return new CommandResult(new ShowAdminActionsCommand(), RESULT);
     }
 }

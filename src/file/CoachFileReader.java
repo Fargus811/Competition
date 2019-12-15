@@ -15,7 +15,7 @@ public class CoachFileReader {
         ) {
             long currentLineid;
             try {
-                currentLineid = Long.parseLong(retrieveIdfromString(line));
+                currentLineid = Long.parseLong(retrieveIdFromString(line));
             } catch (NumberFormatException e) {
                 System.out.println("Invalid line found");
                 continue;
@@ -48,7 +48,7 @@ public class CoachFileReader {
     }
 
 
-    public static String retrieveIdfromString(String string) {
+    public static String retrieveIdFromString(String string) {
         return string.split(";")[0];
     }
 
@@ -58,7 +58,7 @@ public class CoachFileReader {
         ) {
             String currentLineid;
             try {
-                currentLineid = retrieveIdfromString(line);
+                currentLineid = retrieveIdFromString(line);
             } catch (NumberFormatException e) {
                 System.out.println("Invalid line found");
                 continue;

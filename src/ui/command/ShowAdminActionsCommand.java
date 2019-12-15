@@ -16,6 +16,8 @@ import java.util.List;
 
 public class ShowAdminActionsCommand implements Command {
 
+    private static final String INSTRUCTION_RESULT = "Выберите нужное действие";
+
     @Override
     public String getInstruction() {
         System.out.println("Доступные действия:");
@@ -29,7 +31,7 @@ public class ShowAdminActionsCommand implements Command {
         System.out.println("8 - обновить информацию о тренере");
         System.out.println("9 - обновить информацию о спортсмене");
 
-        return "Выберите нужное действие";
+        return INSTRUCTION_RESULT;
     }
 
     @Override

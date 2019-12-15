@@ -9,13 +9,15 @@ import java.util.List;
 
 public class DeleteCoachCommand implements Command {
 
+    private static final String INSTRUCTION = "Введите id тренера";
+
     private static final String RESULT = "Удаление прошло успешно";
 
     private CoachService coachService = CoachService.getInstance();
 
     @Override
     public String getInstruction() {
-        return "Введите id тренера";
+        return INSTRUCTION;
     }
 
     @Override

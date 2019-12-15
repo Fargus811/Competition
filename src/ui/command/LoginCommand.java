@@ -5,7 +5,12 @@ import service.UserService;
 import java.util.List;
 
 public class LoginCommand implements Command {
-    public static final String ENTER_LOGIN_AND_PASSWORD = "Введидте логин и пароль:";
+
+    private static final String ENTER_LOGIN_AND_PASSWORD = "Введидте логин и пароль:";
+
+    private static final String TRUE_RESULT = "Вы авторизированны";
+
+    private static final String FALSE_RESULT = "Неверный логин или пароль";
 
     private UserService userService = UserService.getInstance();
 
@@ -28,9 +33,9 @@ public class LoginCommand implements Command {
     public CommandResult process(List<String> params) {
         boolean isLogined = userService.login(params.get(0), params.get(1));
         if (isLogined) {
-            return new CommandResult(new ShowAdminActionsCommand(), "Вы авторизированны");
+            return new CommandResult(new ShowAdminActionsCommand(), TRUE_RESULT);
         } else {
-            return new CommandResult(new LoginCommand(), "Неверный логин или пароль");
+            return new CommandResult(new LoginCommand(), FALSE_RESULT);
         }
     }
 }
