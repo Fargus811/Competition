@@ -1,3 +1,0 @@
-1;Kyanetsov;Nekit;23;MALE;Belarus;111;
-4;Kyanetsov;Nekit;23;MALE;Belarus;111;
-2;Kyanetsov;Nekit;23;MALE;Belarus;111;
