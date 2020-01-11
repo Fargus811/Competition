@@ -9,17 +9,20 @@ import java.io.IOException;
 public class FileConfigurator {
 
     private static final String DIR_PATH = "/Users/mac/Downloads/MyProjects/Competition/database";
-    private File coachFile =new File(DIR_PATH + File.separator + "coachList.txt");
-    private File sportsmenFile = new File(DIR_PATH + File.separator + "sportsmenList.txt");
-    private File allUsersFile = new File(DIR_PATH + File.separator + "allUsersList.txt");
+    private static final String SPORTSMEN_FILE_NAME = "sportsmenList.txt";
+    private static final String COACH_FILE_NAME = "coachList.txt";
+    private static final String USERS_FILENAME = "allUsersList.txt";
+    private File coachFile =new File(DIR_PATH + File.separator + COACH_FILE_NAME);
+    private File sportsmenFile = new File(DIR_PATH + File.separator + SPORTSMEN_FILE_NAME);
+    private File allUsersFile = new File(DIR_PATH + File.separator + USERS_FILENAME);
 
     public boolean initFiles() {
         boolean createdCoachFile;
         boolean createdSportsmenFile;
         boolean createdAllUsersFile;
-        createdSportsmenFile = createFileIfNotExists(sportsmenFile, "sportsmenList.txt");
-        createdCoachFile = createFileIfNotExists(coachFile, "coachList.txt");
-        createdAllUsersFile = createFileIfNotExists(allUsersFile, "allUsersList.txt");
+        createdSportsmenFile = createFileIfNotExists(sportsmenFile, SPORTSMEN_FILE_NAME);
+        createdCoachFile = createFileIfNotExists(coachFile, COACH_FILE_NAME);
+        createdAllUsersFile = createFileIfNotExists(allUsersFile, USERS_FILENAME);
 
         return createdAllUsersFile && createdCoachFile && createdSportsmenFile;
     }

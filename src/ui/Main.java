@@ -13,10 +13,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
         FileConfigurator dbManager = new FileConfigurator();
         System.out.println(dbManager.initFiles());
-
         Scanner scanner = new Scanner(System.in);
         Command currentCommand = new LoginCommand();
         while (true) {

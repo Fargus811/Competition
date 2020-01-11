@@ -11,9 +11,6 @@ import ui.command.sportsman.UpdateSportsmanCommand;
 
 import java.util.List;
 
-//import ui.command.coach.DeleteCoachCommand;
-//import ui.command.coach.UpdateCoachCommand;
-
 public class ShowAdminActionsCommand implements Command {
 
     private static final String INSTRUCTION_RESULT = "Выберите нужное действие";
@@ -50,41 +47,41 @@ public class ShowAdminActionsCommand implements Command {
         switch (params.get(0)) {
 
             case "1":
-                commandResult = new CommandResult(new ShowAllSportsmenCommand(), null);
+                commandResult = new CommandResult(new ShowAllSportsmenCommand());
                 break;
 
             case "2":
-                commandResult = new CommandResult(new ShowAllCoachesCommand(), null);
+                commandResult = new CommandResult(new ShowAllCoachesCommand());
                 break;
 
             case "3":
-                commandResult = new CommandResult(new ShowAllUsersCommand(),null);
+                commandResult = new CommandResult(new ShowAllUsersCommand());
                 break;
 
             case "4":
-                commandResult = new CommandResult(new CreateCoachCommand(),null);
+                commandResult = new CommandResult(new CreateCoachCommand());
                 break;
 
             case "5":
-                commandResult = new CommandResult(new CreatSporstmanCommand(),null);
+                commandResult = new CommandResult(new CreatSporstmanCommand());
                 break;
 
             case "6":
-               commandResult = new CommandResult(new DeleteCoachCommand(),null);
+               commandResult = new CommandResult(new DeleteCoachCommand());
                break;
 
             case "7":
-                commandResult = new CommandResult(new DeleteSportsmanCommand(),null);
+                commandResult = new CommandResult(new DeleteSportsmanCommand());
 
            case "8":
-                commandResult = new CommandResult(new UpdateCoachCommand(),null);
+                commandResult = new CommandResult(new UpdateCoachCommand());
                break;
 
             case "9":
-                commandResult = new CommandResult(new UpdateSportsmanCommand(),null);
+                commandResult = new CommandResult(new UpdateSportsmanCommand());
 
             default:
-                commandResult = new CommandResult(new ShowAdminActionsCommand(), null);
+                commandResult = new CommandResult(new ShowAdminActionsCommand());
                 break;
         }
         return commandResult;

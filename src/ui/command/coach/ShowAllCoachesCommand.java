@@ -12,7 +12,7 @@ public class ShowAllCoachesCommand implements Command {
 
     private static final String INSTRUCTION = "Список тренеров:";
 
-    CoachService coachService = CoachService.getInstance();
+    private static CoachService coachService = CoachService.getInstance();
 
     @Override
     public String getInstruction() {

@@ -8,23 +8,21 @@ import java.util.List;
 
 public class CoachFileWriter {
 
-    public static void writeLinesToFile(List<String> lines){
+    public static void writeLinesToFile(List<String> lines) {
         FileWriter fileWriter = null;
         try {
-             fileWriter = new FileWriter("/Users/mac/Downloads/MyProjects/Competition/database/coachList.txt");
-
-                fileWriter.write(StringUtils.join(lines,"\n"));
+            fileWriter = new FileWriter("/Users/mac/Downloads/MyProjects/Competition/database/coachList.txt");
+            fileWriter.write(StringUtils.join(lines, "\n"));
 
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             closeWriter(fileWriter);
         }
-
     }
 
     private static void closeWriter(FileWriter fileWriter) {
-        if (fileWriter != null){
+        if (fileWriter != null) {
             try {
                 fileWriter.close();
             } catch (IOException e) {

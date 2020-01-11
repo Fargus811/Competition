@@ -24,14 +24,12 @@ public class CoachService {
         return instance;
     }
 
-
     public List<Coach> findAll() {
         return coachRepository.findAll();
     }
 
     public void createCoach(List<String> params) {
         try {
-
             int age = Integer.parseInt(params.get(2));
             int cost = Integer.parseInt(params.get(5));
             Sex sex = Sex.valueOf(params.get(3));
@@ -60,7 +58,6 @@ public class CoachService {
     }
     public void update(List<String> params){
         try {
-
             int age = Integer.parseInt(params.get(3));
             int cost = Integer.parseInt(params.get(6));
             Sex sex = Sex.valueOf(params.get(4));

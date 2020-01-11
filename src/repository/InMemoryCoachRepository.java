@@ -13,7 +13,7 @@ public class InMemoryCoachRepository implements CoachRepository {
     private List<Coach> coachList = new ArrayList<>();
 
     private static InMemoryCoachRepository instance;
-    FileConfigurator coachFileConfig = new FileConfigurator();
+    private FileConfigurator coachFileConfig = new FileConfigurator();
 
     private InMemoryCoachRepository() {
 
@@ -29,8 +29,7 @@ public class InMemoryCoachRepository implements CoachRepository {
     @Override
     public List<Coach> findCoachByAge(int age) {
         List<Coach> ageCoach = new ArrayList<>();
-        for (Coach coach : coachList
-        ) {
+        for (Coach coach : coachList) {
             if (coach.getAge() == age) {
                 ageCoach.add(coach);
             }
@@ -42,8 +41,7 @@ public class InMemoryCoachRepository implements CoachRepository {
     @Override
     public List<Coach> findByCost(int cost) {
         List<Coach> costCoach = new ArrayList<>();
-        for (Coach coach : coachList
-        ) {
+        for (Coach coach : coachList) {
             if (coach.getCost() == cost) {
                 costCoach.add(coach);
             }
@@ -83,8 +81,7 @@ public class InMemoryCoachRepository implements CoachRepository {
         coachFileConfig.initFiles();
         List<String> coachLines = CoachFileReader.readAllLines();
         List<String> coachResult = new ArrayList<>();
-        for (String line : coachLines
-        ) {
+        for (String line : coachLines) {
             if (!CoachFileReader.retrieveIdFromLine(line).equals(coachId)) {
                 coachResult.add(line);
             }
@@ -108,8 +105,7 @@ public class InMemoryCoachRepository implements CoachRepository {
     public List<Coach> findAll() {
         List<String> coachLines = CoachFileReader.readAllLines();
         List<Coach> coachResult = new ArrayList<>();
-        for (String line : coachLines
-        ) {
+        for (String line : coachLines) {
             coachResult.add(buildCoach(line));
         }
         return coachResult;
@@ -120,9 +116,7 @@ public class InMemoryCoachRepository implements CoachRepository {
         coachFileConfig.initFiles();
         String coachString = CoachFileReader.readLineById(String.valueOf(id));
         return coachString == null ? null : buildCoach(coachString);
-
     }
-
 
 }
 

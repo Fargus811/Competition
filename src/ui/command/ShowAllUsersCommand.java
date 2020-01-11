@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ShowAllUsersCommand implements Command{
 
-    UserService userService = UserService.getInstance();
+    private static UserService userService = UserService.getInstance();
 
     @Override
     public String getInstruction() {

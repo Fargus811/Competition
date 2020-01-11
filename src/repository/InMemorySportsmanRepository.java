@@ -14,6 +14,8 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
 
     private static int counter = 0;
 
+    private FileConfigurator sportsmanFileConfig = new FileConfigurator();
+
     private static InMemorySportsmanRepository instance ;
 
     private InMemorySportsmanRepository(){
@@ -32,9 +34,9 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
     @Override
     public void save(Sportsman sportsman) {
         boolean success;
-        coachFileConfig.initFiles();
+        sportsmanFileConfig.initFiles();
         sportsman.setId(CoachFileReader.readMaxId() + 1);
-        success = coachFileConfig.writeDataToFile(coachFileConfig.getCoachFile(), coach);
+        success = sportsmanFileConfig.writeDataToFile(sportsmanFileConfig.getCoachFile(), sportsman);
         if (!success) {
             System.err.println("Почини руки");
         }
@@ -48,8 +50,7 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
     @Override
     public List<Sportsman> findSportsManByAge(int age) {
         List<Sportsman> ageSportsman = new ArrayList<>();
-        for (Sportsman sportsman : sportsmanList
-        ) {
+        for (Sportsman sportsman : sportsmanList) {
             if (sportsman.getAge() == age) {
                 ageSportsman.add(sportsman);
             }
@@ -69,8 +70,7 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
     @Override
     public List<Sportsman> findByWeight(int weight) {
         List<Sportsman> weightSportsman = new ArrayList<>();
-        for (Sportsman sportsman : sportsmanList
-        ) {
+        for (Sportsman sportsman : sportsmanList) {
             if (sportsman.getWeight() == weight) {
                 weightSportsman.add(sportsman);
             }
@@ -81,8 +81,7 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
     @Override
     public List<Sportsman> findByManandWeight(int weight) {
         List<Sportsman> weightSportsman = new ArrayList<>();
-        for (Sportsman sportsman : sportsmanList
-        ) {
+        for (Sportsman sportsman : sportsmanList) {
             if (sportsman.getWeight() == weight && sportsman.getSex() == Sex.MALE) {
                 weightSportsman.add(sportsman);
             }

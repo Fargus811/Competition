@@ -35,7 +35,6 @@ public class Coach {
 
     public void setCost(int cost) {
         this.cost = cost;
-
     }
 
     public void setId(long id) {

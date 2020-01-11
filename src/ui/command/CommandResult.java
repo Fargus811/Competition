@@ -10,6 +10,11 @@ public class CommandResult {
         this.result = result;
     }
 
+    public CommandResult(Command command) {
+        this.result = null;
+        this.command = command;
+    }
+
     public Command getCommand() {
         return command;
     }

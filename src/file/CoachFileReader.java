@@ -30,18 +30,12 @@ public class CoachFileReader {
 
     public static List<String> readAllLines() {
         List<String> list = new ArrayList<>();
-        Scanner in = null;
-        try {
-            in = new Scanner(new File("/Users/mac/Downloads/MyProjects/Competition/database/coachList.txt"));
+        try (Scanner in = new Scanner(new File("/Users/mac/Downloads/MyProjects/Competition/database/coachList.txt"))) {
             while (in.hasNextLine()) {
                 list.add(in.nextLine());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            if (in != null) {
-                in.close();
-            }
         }
 
         return list;
@@ -54,19 +48,17 @@ public class CoachFileReader {
 
     public static String readLineById(String id) {
         List<String> lines = readAllLines();
-        for (String line : lines
-        ) {
-            String currentLineid;
+        for (String line : lines) {
+            String currentLineId;
             try {
-                currentLineid = retrieveIdFromLine(line);
+                currentLineId = retrieveIdFromLine(line);
             } catch (NumberFormatException e) {
                 System.out.println("Invalid line found");
                 continue;
             }
-            if (currentLineid.equals(id)) {
+            if (currentLineId.equals(id)) {
                 return line;
             }
-
         }
         return null;
     }

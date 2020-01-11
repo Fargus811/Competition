@@ -22,9 +22,9 @@ public class SportsmanService {
         }
         return instance;
     }
+
     public void createSportsman(List<String> params) {
         try {
-
             int age = Integer.parseInt(params.get(2));
             double cost = Double.valueOf(params.get(3));
             Sex sex = Sex.valueOf(params.get(5));
@@ -38,9 +38,7 @@ public class SportsmanService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
 
     public List<Sportsman> findAll(){
         return sportsmanRepository.findAll();
