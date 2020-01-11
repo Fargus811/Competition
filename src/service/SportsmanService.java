@@ -2,6 +2,7 @@ package service;
 
 import entity.Sex;
 import entity.Sportsman;
+import exception.SportsmanServiceException;
 import repository.InMemorySportsmanRepository;
 import repository.SportsmanRepository;
 
@@ -23,7 +24,7 @@ public class SportsmanService {
         return instance;
     }
 
-    public void createSportsman(List<String> params) {
+    public void createSportsman(List<String> params) throws SportsmanServiceException {
         try {
             int age = Integer.parseInt(params.get(2));
             double cost = Double.valueOf(params.get(3));
@@ -36,7 +37,7 @@ public class SportsmanService {
             sportsman.setCountry(params.get(4));
             sportsmanRepository.save(sportsman);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new SportsmanServiceException(e);
         }
     }
 

@@ -1,5 +1,7 @@
 package ui.command;
 
+import exception.CommandException;
+
 import java.util.List;
 
 public interface Command {
@@ -10,5 +12,5 @@ public interface Command {
 
     String[] getParamInstructions();
 
-    CommandResult process(List<String> params);
+    CommandResult process(List<String> params) throws CommandException;
 }

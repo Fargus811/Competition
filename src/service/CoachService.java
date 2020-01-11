@@ -2,6 +2,7 @@ package service;
 
 import entity.Coach;
 import entity.Sex;
+import exception.CoachServiceException;
 import repository.CoachRepository;
 import repository.InMemoryCoachRepository;
 
@@ -28,7 +29,7 @@ public class CoachService {
         return coachRepository.findAll();
     }
 
-    public void createCoach(List<String> params) {
+    public void createCoach(List<String> params) throws CoachServiceException {
         try {
             int age = Integer.parseInt(params.get(2));
             int cost = Integer.parseInt(params.get(5));
@@ -42,7 +43,7 @@ public class CoachService {
             coach.setCost(cost);
             coachRepository.save(coach);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new CoachServiceException(e);
         }
 
     }
@@ -56,7 +57,7 @@ public class CoachService {
         }
 
     }
-    public void update(List<String> params){
+    public void update(List<String> params) throws CoachServiceException{
         try {
             int age = Integer.parseInt(params.get(3));
             int cost = Integer.parseInt(params.get(6));
@@ -71,7 +72,7 @@ public class CoachService {
             coach.setCost(cost);
             coachRepository.update(coach);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new CoachServiceException(e);
         }
 
     }

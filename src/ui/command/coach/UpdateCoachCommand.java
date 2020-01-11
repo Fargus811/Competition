@@ -1,5 +1,7 @@
 package ui.command.coach;
 
+import exception.CommandException;
+import exception.CoachServiceException;
 import service.CoachService;
 import ui.command.Command;
 import ui.command.CommandResult;
@@ -35,8 +37,12 @@ public class UpdateCoachCommand implements Command {
     }
 
     @Override
-    public CommandResult process(List<String> params) {
-        coachService.update(params);
+    public CommandResult process(List<String> params) throws CommandException {
+        try {
+            coachService.update(params);
+        } catch (CoachServiceException e) {
+            throw new CommandException(e);
+        }
         return new CommandResult(new ShowAdminActionsCommand(), RESULT);
     }
 }
