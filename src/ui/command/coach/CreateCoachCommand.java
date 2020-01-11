@@ -30,7 +30,7 @@ public class CreateCoachCommand implements Command {
     }
 
     @Override
-    public String[] getParamInstruction() {
+    public String[] getParamInstructions() {
         return paramInstructions;
     }
 

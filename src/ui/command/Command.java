@@ -8,7 +8,7 @@ public interface Command {
 
     int getParamsNumber();
 
-    String[] getParamInstruction();
+    String[] getParamInstructions();
 
     CommandResult process(List<String> params);
 }

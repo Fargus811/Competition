@@ -2,6 +2,7 @@ package repository;
 
 import entity.Sex;
 import entity.Sportsman;
+import file.CoachFileReader;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,11 +28,16 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
     }
 
 
+
     @Override
     public void save(Sportsman sportsman) {
-        sportsman.setId(counter);
-        sportsmanList.add(sportsman);
-        counter++;
+        boolean success;
+        coachFileConfig.initFiles();
+        sportsman.setId(CoachFileReader.readMaxId() + 1);
+        success = coachFileConfig.writeDataToFile(coachFileConfig.getCoachFile(), coach);
+        if (!success) {
+            System.err.println("Почини руки");
+        }
     }
 
     @Override

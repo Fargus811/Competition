@@ -13,7 +13,7 @@ public class CreatSporstmanCommand implements Command {
 
     private static SportsmanService sportsmanService = SportsmanService.getInstance();
 
-    String[] paramsInstruction = new String[]{"k"};
+    String[] paramsInstruction = new String[]{"Введите имя спортсмена","Введите фамилию спортсмена","Введите возраст спортсмена","Введите вес спортсмена","Введите страну спортсмена","Введите пол спортсмена:MALE или FEMALE"};
 
     @Override
     public String getInstruction() {
@@ -22,16 +22,17 @@ public class CreatSporstmanCommand implements Command {
 
     @Override
     public int getParamsNumber() {
-        return 0;
+        return 6;
     }
 
     @Override
-    public String[] getParamInstruction() {
+    public String[] getParamInstructions() {
         return new String[0];
     }
 
     @Override
     public CommandResult process(List<String> params) {
+
         return new CommandResult(new ShowAdminActionsCommand(), RESULT);
     }
 }

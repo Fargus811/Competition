@@ -22,7 +22,7 @@ public class Main {
         while (true) {
             System.out.println(currentCommand.getInstruction());
             List<String> params = new ArrayList<>();
-            String[] paramInstruction = currentCommand.getParamInstruction();
+            String[] paramInstruction = currentCommand.getParamInstructions();
             for (int i = 0; i < currentCommand.getParamsNumber(); i++) {
                 if (paramInstruction.length != 0) {
                     System.out.println(paramInstruction[i]);

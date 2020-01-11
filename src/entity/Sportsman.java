@@ -3,21 +3,19 @@ package entity;
 import java.util.Objects;
 
 public class Sportsman {
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
     private int age;
     private double weight;
-    private String club;
     private String country;
     private Sex sex;
 
-    public Sportsman(String firstName, String lastName, int age, double weight, String club, String country, Sex sex) {
+    public Sportsman(String firstName, String lastName, int age, double weight, String country, Sex sex) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.weight = weight;
-        this.club = club;
         this.country = country;
         this.sex = sex;
     }
@@ -25,11 +23,11 @@ public class Sportsman {
     public Sportsman() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -74,15 +72,6 @@ public class Sportsman {
         this.weight = weight;
     }
 
-    public String getClub() {
-        return club;
-    }
-
-    public void setClub(String club) {
-        this.club = club;
-    }
-
-
     public String getCountry() {
         return country;
     }
@@ -99,7 +88,7 @@ public class Sportsman {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", weight=" + weight +
-                ", club='" + club + '\'' +
+                ", club='" +  '\'' +
                 ", country='" + country + '\'' +
                 ", sex=" + sex +
                 '}';

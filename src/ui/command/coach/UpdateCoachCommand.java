@@ -31,7 +31,7 @@ public class UpdateCoachCommand implements Command {
     }
 
     @Override
-    public String[] getParamInstruction() {
+    public String[] getParamInstructions() {
         return paramInstructions;
     }
 
