@@ -11,8 +11,7 @@ public class CoachFileReader {
     public static long readMaxId() {
         List<String> lines = readAllLines();
         long maxId = 0;
-        for (String line : lines
-        ) {
+        for (String line : lines) {
             long currentLineid;
             try {
                 currentLineid = Long.parseLong(retrieveIdFromLine(line));

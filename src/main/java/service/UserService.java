@@ -1,6 +1,5 @@
 package service;
 
-import entity.Coach;
 import repository.InMemoryCoachRepository;
 import repository.InMemorySportsmanRepository;
 import java.util.ArrayList;
