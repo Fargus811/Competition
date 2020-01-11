@@ -24,36 +24,4 @@ public class ExitCommand implements Command {
         return new CommandResult(null, null);
     }
 
-    public static void main(String[] args) {
-        Thread t = new Thread1();
-        t.start();
-
-
-        Thread t2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("33333");
-            }
-        });
-        t2.start();
-    }
-
-    static class Thread1 extends Thread{
-
-        @Override
-        public void run() {
-            System.out.println("asasas");
-        }
-
-    }
-
-    static class Thread2 implements Runnable{
-
-        @Override
-        public void run() {
-            System.out.println("222222");
-        }
-    }
-
-
 }
