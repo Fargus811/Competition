@@ -1,6 +1,7 @@
 package ui;
 
 import exception.CommandException;
+import exception.SportsmanServiceException;
 import repository.FileConfigurator;
 import ui.command.Command;
 import ui.command.CommandResult;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws CommandException {
+    public static void main(String[] args) throws CommandException,SecurityException, SportsmanServiceException {
         FileConfigurator dbManager = new FileConfigurator();
         System.out.println(dbManager.initFiles());
         Scanner scanner = new Scanner(System.in);

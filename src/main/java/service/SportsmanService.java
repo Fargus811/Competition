@@ -1,5 +1,6 @@
 package service;
 
+import entity.Role;
 import entity.Sex;
 import entity.Sportsman;
 import exception.SportsmanServiceException;
@@ -27,14 +28,17 @@ public class SportsmanService {
     public void createSportsman(List<String> params) throws SportsmanServiceException {
         try {
             int age = Integer.parseInt(params.get(2));
-            double cost = Double.valueOf(params.get(3));
-            Sex sex = Sex.valueOf(params.get(5));
+            double weight = Double.valueOf(params.get(3));
+            Sex sex = Sex.valueOf(params.get(6));
             Sportsman sportsman = new Sportsman();
-            sportsman.setFirstname(params.get(0));
+            sportsman.setFirstName(params.get(0));
             sportsman.setLastName(params.get(1));
+            sportsman.setLogin(params.get(4));
+            sportsman.setPassword(params.get(5));
+            sportsman.setEmail(params.get(7));
             sportsman.setAge(age);
             sportsman.setSex(sex);
-            sportsman.setCountry(params.get(4));
+            sportsman.setRole(Role.SPORTSMEN);
             sportsmanRepository.save(sportsman);
         } catch (Exception e) {
             throw new SportsmanServiceException(e);

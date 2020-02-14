@@ -1,6 +1,7 @@
 package ui.command;
 
 import exception.CommandException;
+import exception.SportsmanServiceException;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface Command {
 
     String[] getParamInstructions();
 
-    CommandResult process(List<String> params) throws CommandException;
+    CommandResult process(List<String> params) throws CommandException, SportsmanServiceException;
 }

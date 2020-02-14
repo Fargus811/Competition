@@ -1,21 +1,22 @@
 package repository;
 
 import entity.Coach;
+import entity.Role;
 import entity.Sex;
 import file.CoachFileReader;
 import file.CoachFileWriter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class InMemoryCoachRepository implements CoachRepository {
+    Object a = new String("f");
+    String s = (String)a;
 
     private List<Coach> coachList = new ArrayList<>();
-
     private static InMemoryCoachRepository instance;
     private FileConfigurator coachFileConfig = new FileConfigurator();
 
-    private InMemoryCoachRepository() {
+    private  InMemoryCoachRepository() {
 
     }
 
@@ -34,6 +35,7 @@ public class InMemoryCoachRepository implements CoachRepository {
                 ageCoach.add(coach);
             }
         }
+
         return ageCoach;
 
     }
@@ -65,12 +67,16 @@ public class InMemoryCoachRepository implements CoachRepository {
         int age = Integer.parseInt(coachParts[3]);
         int cost = Integer.parseInt(coachParts[6]);
         Sex sex = Sex.valueOf(coachParts[4]);
-        coachResult.setFirstname(coachParts[1]);
+        coachResult.setFirstName(coachParts[1]);
         coachResult.setLastName(coachParts[2]);
         coachResult.setAge(age);
         coachResult.setSex(sex);
-        coachResult.setCountry(coachParts[5]);
+        coachResult.setLogin(coachParts[5]);
         coachResult.setCost(cost);
+        coachResult.setRank(coachParts[7]);
+        coachResult.setEmail(coachParts[8]);
+        coachResult.setPassword(coachParts[9]);
+        coachResult.setRole(Role.COACH);
 
         return coachResult;
     }
@@ -118,5 +124,11 @@ public class InMemoryCoachRepository implements CoachRepository {
         return coachString == null ? null : buildCoach(coachString);
     }
 
+    @Override
+    public Coach findByLogin(String login) {
+        coachFileConfig.initFiles();
+        String coachLogin = CoachFileReader.readLineByLogin(login);
+        return null;
+    }
 }
 

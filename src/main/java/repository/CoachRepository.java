@@ -5,6 +5,8 @@ import entity.Coach;
 import java.util.List;
 
 public interface CoachRepository {
+
+
     void save(Coach coach);
 
     List<Coach> findAll();
@@ -20,4 +22,6 @@ public interface CoachRepository {
     Coach buildCoach(String coach);
 
     void update(Coach coach);
+
+    Coach findByLogin(String login);
 }

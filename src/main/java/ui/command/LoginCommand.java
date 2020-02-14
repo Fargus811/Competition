@@ -1,5 +1,7 @@
 package ui.command;
 
+import entity.Role;
+import exception.UserLoginException;
 import service.UserService;
 
 import java.util.List;
@@ -30,12 +32,15 @@ public class LoginCommand implements Command {
     }
 
     @Override
-    public CommandResult process(List<String> params) {
-        boolean isLogined = userService.login(params.get(0), params.get(1));
-        if (isLogined) {
+    public CommandResult process(List<String> params) throws UserLoginException {
+        Role isLogined = userService.login(params.get(0), params.get(1));
+        if (isLogined == Role.ADMIN) {
             return new CommandResult(new ShowAdminActionsCommand(), TRUE_RESULT);
+        } else if (isLogined == Role.COACH) {
+            return new CommandResult(new ShowCoachActionsCommand(), TRUE_RESULT);
         } else {
-            return new CommandResult(new LoginCommand(), FALSE_RESULT);
+
         }
+        return new CommandResult(new LoginCommand(),FALSE_RESULT);
     }
 }

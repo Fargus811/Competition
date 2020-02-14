@@ -1,5 +1,7 @@
 package ui.command.sportsman;
 
+import exception.CommandException;
+import exception.SportsmanServiceException;
 import service.SportsmanService;
 import ui.command.Command;
 import ui.command.CommandResult;
@@ -14,8 +16,8 @@ public class CreatSporstmanCommand implements Command {
     private static SportsmanService sportsmanService = SportsmanService.getInstance();
 
     private String[] paramsInstruction = new String[]{"Введите имя спортсмена","Введите фамилию спортсмена",
-            "Введите возраст спортсмена","Введите вес спортсмена","Введите страну спортсмена",
-            "Введите пол спортсмена:MALE или FEMALE"};
+            "Введите возраст спортсмена","Введите вес спортсмена","Введите логин спортсмена","Введите пароль",
+            "Введите пол спортсмена:MALE или FEMALE","Введите email"};
 
     @Override
     public String getInstruction() {
@@ -33,7 +35,12 @@ public class CreatSporstmanCommand implements Command {
     }
 
     @Override
-    public CommandResult process(List<String> params) {
+    public CommandResult process(List<String> params) throws CommandException{
+        try{
+            sportsmanService.createSportsman(params);
+        }catch (SportsmanServiceException e){
+            throw new CommandException(e);
+        }
         return new CommandResult(new ShowAdminActionsCommand(), RESULT);
     }
 }

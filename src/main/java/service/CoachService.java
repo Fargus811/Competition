@@ -1,6 +1,7 @@
 package service;
 
 import entity.Coach;
+import entity.Role;
 import entity.Sex;
 import exception.CoachServiceException;
 import repository.CoachRepository;
@@ -35,12 +36,16 @@ public class CoachService {
             int cost = Integer.parseInt(params.get(5));
             Sex sex = Sex.valueOf(params.get(3));
             Coach coach = new Coach();
-            coach.setFirstname(params.get(0));
+            coach.setFirstName(params.get(0));
             coach.setLastName(params.get(1));
             coach.setAge(age);
             coach.setSex(sex);
-            coach.setCountry(params.get(4));
+            coach.setLogin(params.get(4));
             coach.setCost(cost);
+            coach.setRank(params.get(6));
+            coach.setEmail(params.get(7));
+            coach.setPassword(params.get(8));
+            coach.setRole(Role.COACH);
             coachRepository.save(coach);
         } catch (Exception e) {
             throw new CoachServiceException(e);
@@ -64,12 +69,13 @@ public class CoachService {
             Sex sex = Sex.valueOf(params.get(4));
             Coach coach = new Coach();
             coach.setId(Long.parseLong(params.get(0)));
-            coach.setFirstname(params.get(1));
+            coach.setFirstName(params.get(1));
             coach.setLastName(params.get(2));
             coach.setAge(age);
             coach.setSex(sex);
-            coach.setCountry(params.get(5));
+            coach.setLogin(params.get(5));
             coach.setCost(cost);
+            coach.setRank(params.get(7));
             coachRepository.update(coach);
         } catch (Exception e) {
             throw new CoachServiceException(e);

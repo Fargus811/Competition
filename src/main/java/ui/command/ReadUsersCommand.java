@@ -26,8 +26,6 @@ public class ReadUsersCommand implements Command {
     @Override
     public CommandResult process(List<String> params) {
         String result = Arrays.asList(
-                new User(1, "Dan", Role.COACH),
-                new User(1, "Dan", Role.COACH)
         ).toString();
         return new CommandResult(new ShowAdminActionsCommand(), result);
     }

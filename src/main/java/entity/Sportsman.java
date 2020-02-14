@@ -2,66 +2,106 @@ package entity;
 
 import java.util.Objects;
 
-public class Sportsman {
-    private long id;
-    private String firstName;
-    private String lastName;
-    private int age;
+public class Sportsman extends User {
     private double weight;
-    private String country;
-    private Sex sex;
-
-    public Sportsman(String firstName, String lastName, int age, double weight, String country, Sex sex) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.weight = weight;
-        this.country = country;
-        this.sex = sex;
-    }
 
     public Sportsman() {
     }
 
+    public Sportsman(long id, String firstName, String lastName, Role role, String email, String password, int age,
+                     String login, Sex sex, double weight) {
+        super(id, firstName, lastName, role, email, password, age, login, sex);
+        this.weight = weight;
+    }
+
+    @Override
     public long getId() {
-        return id;
+        return super.getId();
     }
 
+    @Override
     public void setId(long id) {
-        this.id = id;
+        super.setId(id);
     }
 
-
-    public Sex getSex() {
-        return sex;
+    @Override
+    public String getFirstName() {
+        return super.getFirstName();
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
+    @Override
+    public void setFirstName(String firstName) {
+        super.setFirstName(firstName);
     }
 
-    public String getFirstname() {
-        return firstName;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstName = firstname;
-    }
-
+    @Override
     public String getLastName() {
-        return lastName;
+        return super.getLastName();
     }
 
+    @Override
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        super.setLastName(lastName);
     }
 
+    @Override
+    public Role getRole() {
+        return super.getRole();
+    }
+
+    @Override
+    public void setRole(Role role) {
+        super.setRole(role);
+    }
+
+    @Override
+    public String getEmail() {
+        return super.getEmail();
+    }
+
+    @Override
+    public void setEmail(String email) {
+        super.setEmail(email);
+    }
+
+    @Override
+    public String getPassword() {
+        return super.getPassword();
+    }
+
+    @Override
+    public void setPassword(String password) {
+        super.setPassword(password);
+    }
+
+    @Override
     public int getAge() {
-        return age;
+        return super.getAge();
     }
 
+    @Override
     public void setAge(int age) {
-        this.age = age;
+        super.setAge(age);
+    }
+
+    @Override
+    public String getLogin() {
+        return super.getLogin();
+    }
+
+    @Override
+    public void setLogin(String login) {
+        super.setLogin(login);
+    }
+
+    @Override
+    public Sex getSex() {
+        return super.getSex();
+    }
+
+    @Override
+    public void setSex(Sex sex) {
+        super.setSex(sex);
     }
 
     public double getWeight() {
@@ -72,38 +112,20 @@ public class Sportsman {
         this.weight = weight;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    @Override
-    public String toString() {
-        return "entity.Sportsman{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", weight=" + weight +
-                ", club='" +  '\'' +
-                ", country='" + country + '\'' +
-                ", sex=" + sex +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Sportsman)) return false;
+        if (!super.equals(o)) return false;
         Sportsman sportsman = (Sportsman) o;
-        return id == sportsman.id;
+        return Double.compare(sportsman.weight, weight) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(super.hashCode(), weight);
     }
+
+
 }
