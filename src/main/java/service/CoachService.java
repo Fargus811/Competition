@@ -34,6 +34,7 @@ public class CoachService {
         try {
             int age = Integer.parseInt(params.get(2));
             int cost = Integer.parseInt(params.get(5));
+            double workExp= Double.valueOf(params.get(9));
             Sex sex = Sex.valueOf(params.get(3));
             Coach coach = new Coach();
             coach.setFirstName(params.get(0));
@@ -45,6 +46,7 @@ public class CoachService {
             coach.setRank(params.get(6));
             coach.setEmail(params.get(7));
             coach.setPassword(params.get(8));
+            coach.setWorkExperience(workExp);
             coach.setRole(Role.COACH);
             coachRepository.save(coach);
         } catch (Exception e) {
@@ -66,6 +68,7 @@ public class CoachService {
         try {
             int age = Integer.parseInt(params.get(3));
             int cost = Integer.parseInt(params.get(6));
+            double workExp = Double.valueOf(params.get(10));
             Sex sex = Sex.valueOf(params.get(4));
             Coach coach = new Coach();
             coach.setId(Long.parseLong(params.get(0)));
@@ -76,6 +79,10 @@ public class CoachService {
             coach.setLogin(params.get(5));
             coach.setCost(cost);
             coach.setRank(params.get(7));
+            coach.setEmail(params.get(8));
+            coach.setPassword(params.get(9));
+            coach.setWorkExperience(workExp);
+            coach.setRole(Role.COACH);
             coachRepository.update(coach);
         } catch (Exception e) {
             throw new CoachServiceException(e);

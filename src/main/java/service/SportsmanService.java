@@ -15,11 +15,12 @@ public class SportsmanService {
 
     private SportsmanRepository sportsmanRepository = InMemorySportsmanRepository.getInstance();
 
-    private SportsmanService(){
+    private SportsmanService() {
 
     }
-    public static SportsmanService getInstance(){
-        if(instance == null){
+
+    public static SportsmanService getInstance() {
+        if (instance == null) {
             instance = new SportsmanService();
         }
         return instance;
@@ -38,6 +39,7 @@ public class SportsmanService {
             sportsman.setEmail(params.get(7));
             sportsman.setAge(age);
             sportsman.setSex(sex);
+            sportsman.setWeight(weight);
             sportsman.setRole(Role.SPORTSMEN);
             sportsmanRepository.save(sportsman);
         } catch (Exception e) {
@@ -45,7 +47,38 @@ public class SportsmanService {
         }
     }
 
-    public List<Sportsman> findAll(){
+    public void deleteById(long id) {
+        Sportsman sportsman = sportsmanRepository.findById(id);
+        if (sportsman == null) {
+            System.out.println("Пользователь с таким id:" + id + " не найден");
+        } else {
+            sportsmanRepository.deleteById(id);
+        }
+
+    }
+
+    public void update(List<String> params) throws SportsmanServiceException {
+        try {
+            int age = Integer.parseInt(params.get(3));
+            double weight = Double.valueOf(params.get(4));
+            Sex sex = Sex.valueOf(params.get(7));
+            Sportsman sportsman = new Sportsman();
+            sportsman.setId(Long.parseLong(params.get(0)));
+            sportsman.setFirstName(params.get(1));
+            sportsman.setLastName(params.get(2));
+            sportsman.setLogin(params.get(5));
+            sportsman.setPassword(params.get(6));
+            sportsman.setEmail(params.get(8));
+            sportsman.setAge(age);
+            sportsman.setSex(sex);
+            sportsman.setRole(Role.SPORTSMEN);
+            sportsmanRepository.update(sportsman);
+        } catch (Exception e) {
+            throw new SportsmanServiceException(e);
+        }
+    }
+
+    public List<Sportsman> findAll() {
         return sportsmanRepository.findAll();
     }
 }

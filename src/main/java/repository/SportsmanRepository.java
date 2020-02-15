@@ -1,20 +1,30 @@
 package repository;
 
+import entity.Sex;
 import entity.Sportsman;
 
 import java.util.List;
 
 public interface SportsmanRepository {
+
     void save(Sportsman sportsman);
 
     List<Sportsman> findAll();
 
     List<Sportsman> findSportsManByAge(int age);
 
-    Sportsman findById(int id);
+    Sportsman findById(long id);
 
-    List<Sportsman> findByWeight(int weight);
+    Sportsman findByWeight(double weight);
 
-    List<Sportsman> findByManandWeight(int weight);
+    Sportsman findByManAndWeight(double weight, Sex sex);
+
+    void deleteById(long id);
+
+    Sportsman buildSportsman(String sportsman);
+
+    void update(Sportsman sportsman);
+
+    Sportsman findByLogin(String login);
 
 }

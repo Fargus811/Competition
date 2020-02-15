@@ -18,7 +18,7 @@ public class CreateCoachCommand implements Command {
     private static final String[] paramInstructions = new String[]{"Ввeдите фамилию тренера", "Введите имя тренера",
             "Введите востраст тренера", "Введите пол тренара: MALE или FEMALE", "Введите логин тренера"
             , "Введите стоимость одной тренировки","Введите ранк тренера","Введите email",
-            "Введите пароль для вашего аккаунта"};
+            "Введите пароль для вашего аккаунта", "Введите стаж работы"};
 
     private CoachService coachService = CoachService.getInstance();
 

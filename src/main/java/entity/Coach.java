@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Coach extends User {
     private int cost;
     private String rank;
+    private double workExperience;
 
     public Coach() {
     }
@@ -13,6 +14,14 @@ public class Coach extends User {
         super(id, firstName, lastName, role, email, password, age, country, sex);
         this.cost = cost;
         this.rank = rank;
+    }
+
+    public double getWorkExperience() {
+        return workExperience;
+    }
+
+    public void setWorkExperience(double workExperience) {
+        this.workExperience = workExperience;
     }
 
     public int getCost() {
@@ -30,9 +39,11 @@ public class Coach extends User {
     public void setRank(String rank) {
         this.rank = rank;
     }
+
     public String parseToDbString() {
         return super.getId() + ";" + super.getFirstName() + ";" + super.getLastName() + ";" + super.getAge() + ";"
-                + super.getSex() + ";" + super.getLogin() + ";" + cost + ";" + rank + ";" + "\n";
+                + super.getSex() + ";" + super.getLogin() + ";" + super.getPassword() + ";" + super.getEmail() + ";"
+                + cost + ";" + rank + ";" + workExperience + "\n";
     }
 
     @Override

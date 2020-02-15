@@ -1,6 +1,7 @@
 package repository;
 
 import entity.Coach;
+import entity.Sportsman;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,7 +13,7 @@ public class FileConfigurator {
     private static final String SPORTSMEN_FILE_NAME = "sportsmenList.txt";
     private static final String COACH_FILE_NAME = "coachList.txt";
     private static final String USERS_FILENAME = "allUsersList.txt";
-    private File coachFile =new File(DIR_PATH + File.separator + COACH_FILE_NAME);
+    private File coachFile = new File(DIR_PATH + File.separator + COACH_FILE_NAME);
     private File sportsmenFile = new File(DIR_PATH + File.separator + SPORTSMEN_FILE_NAME);
     private File allUsersFile = new File(DIR_PATH + File.separator + USERS_FILENAME);
 
@@ -48,19 +49,28 @@ public class FileConfigurator {
 
         try {
             FileWriter fileWriter = new FileWriter(fileToSave, true);
-            if (userdata instanceof Coach) {
-                System.out.println(((Coach) userdata).parseToDbString());
-                fileWriter.write(((Coach) userdata).parseToDbString());
-                fileWriter.close();
-                return true;
+            if (userdata instanceof Coach || userdata instanceof Sportsman) {
+                if (userdata instanceof Coach) {
+                    System.out.println(((Coach) userdata).parseToDbString());
+                    fileWriter.write(((Coach) userdata).parseToDbString());
+                    fileWriter.close();
+                    return true;
+                } else if (userdata instanceof Sportsman){
+                    System.out.println(((Sportsman) userdata).parseToDbString());
+                    fileWriter.write(((Sportsman) userdata).parseToDbString());
+                    fileWriter.close();
+                    return true;
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    } catch(Exception e)
 
+    {
+        e.printStackTrace();
         return false;
     }
+
+        return false;
+}
 
     public File getCoachFile() {
         return coachFile;

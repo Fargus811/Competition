@@ -1,6 +1,7 @@
 package repository;
 
 import entity.Coach;
+import exception.UserLoginException;
 
 import java.util.List;
 
@@ -23,5 +24,5 @@ public interface CoachRepository {
 
     void update(Coach coach);
 
-    Coach findByLogin(String login);
+    String findByLogin(String login) throws UserLoginException;
 }

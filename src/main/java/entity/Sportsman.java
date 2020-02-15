@@ -127,5 +127,10 @@ public class Sportsman extends User {
         return Objects.hash(super.hashCode(), weight);
     }
 
+    public String parseToDbString() {
+        return super.getId() + ";" + super.getFirstName() + ";" + super.getLastName() + ";" + super.getAge() + ";"
+                + super.getSex() + ";" + super.getLogin() + ";" + super.getPassword()+ ";" + super.getEmail() + ";" + weight + ";" + "\n";
+    }
+
 
 }

@@ -13,6 +13,9 @@ public class CreatSporstmanCommand implements Command {
 
     private static final String RESULT ="Спортсмен добавлен в список";
 
+    private static final String INSTRUCTION = "Начинаем создавать спортсмена";
+
+
     private static SportsmanService sportsmanService = SportsmanService.getInstance();
 
     private String[] paramsInstruction = new String[]{"Введите имя спортсмена","Введите фамилию спортсмена",
@@ -21,17 +24,17 @@ public class CreatSporstmanCommand implements Command {
 
     @Override
     public String getInstruction() {
-        return null;
+        return INSTRUCTION;
     }
 
     @Override
     public int getParamsNumber() {
-        return 6;
+        return paramsInstruction.length;
     }
 
     @Override
     public String[] getParamInstructions() {
-        return new String[0];
+        return paramsInstruction;
     }
 
     @Override

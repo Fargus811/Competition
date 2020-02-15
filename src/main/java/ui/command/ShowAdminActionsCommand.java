@@ -72,6 +72,7 @@ public class ShowAdminActionsCommand implements Command {
 
             case "7":
                 commandResult = new CommandResult(new DeleteSportsmanCommand());
+                break;
 
            case "8":
                 commandResult = new CommandResult(new UpdateCoachCommand());
@@ -79,7 +80,7 @@ public class ShowAdminActionsCommand implements Command {
 
             case "9":
                 commandResult = new CommandResult(new UpdateSportsmanCommand());
-
+                break;
             default:
                 commandResult = new CommandResult(new ShowAdminActionsCommand());
                 break;

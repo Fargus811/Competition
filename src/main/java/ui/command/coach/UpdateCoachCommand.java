@@ -17,9 +17,10 @@ public class UpdateCoachCommand implements Command {
 
     private CoachService coachService = CoachService.getInstance();
 
-    private static final String[] paramInstructions = new String[]{"Введите id тренера", "Ввeдите фамилию тренера", "Введите имя тренера",
-            "Введите востраст тренера", "Введите пол тренара: MALE или FEMALE", "Введите старну тренера"
-            , "Введите стоимость одной тренировки"};
+    private static final String[] paramInstructions = new String[]{"Введите id тренера","Ввeдите фамилию тренера", "Введите имя тренера",
+            "Введите востраст тренера", "Введите пол тренара: MALE или FEMALE", "Введите логин тренера"
+            , "Введите стоимость одной тренировки","Введите ранк тренера","Введите email",
+            "Введите пароль для вашего аккаунта", "Введите стаж работы",};
 
     @Override
     public String getInstruction() {

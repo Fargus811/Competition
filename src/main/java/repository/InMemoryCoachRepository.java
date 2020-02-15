@@ -3,14 +3,16 @@ package repository;
 import entity.Coach;
 import entity.Role;
 import entity.Sex;
+import exception.UserLoginException;
 import file.CoachFileReader;
 import file.CoachFileWriter;
 
 import java.util.*;
 
+import static file.CoachFileReader.readLineByLogin;
+
 public class InMemoryCoachRepository implements CoachRepository {
-    Object a = new String("f");
-    String s = (String)a;
+
 
     private List<Coach> coachList = new ArrayList<>();
     private static InMemoryCoachRepository instance;
@@ -65,7 +67,8 @@ public class InMemoryCoachRepository implements CoachRepository {
         Coach coachResult = new Coach();
         coachResult.setId(Long.parseLong(coachParts[0]));
         int age = Integer.parseInt(coachParts[3]);
-        int cost = Integer.parseInt(coachParts[6]);
+        int cost = Integer.parseInt(coachParts[8]);
+        double workExp = Double.valueOf(coachParts[10]);
         Sex sex = Sex.valueOf(coachParts[4]);
         coachResult.setFirstName(coachParts[1]);
         coachResult.setLastName(coachParts[2]);
@@ -73,11 +76,11 @@ public class InMemoryCoachRepository implements CoachRepository {
         coachResult.setSex(sex);
         coachResult.setLogin(coachParts[5]);
         coachResult.setCost(cost);
-        coachResult.setRank(coachParts[7]);
-        coachResult.setEmail(coachParts[8]);
-        coachResult.setPassword(coachParts[9]);
+        coachResult.setRank(coachParts[9]);
+        coachResult.setEmail(coachParts[7]);
+        coachResult.setPassword(coachParts[6]);
+        coachResult.setWorkExperience(workExp);
         coachResult.setRole(Role.COACH);
-
         return coachResult;
     }
 
@@ -125,10 +128,16 @@ public class InMemoryCoachRepository implements CoachRepository {
     }
 
     @Override
-    public Coach findByLogin(String login) {
+    public String findByLogin(String login) throws UserLoginException{
         coachFileConfig.initFiles();
-        String coachLogin = CoachFileReader.readLineByLogin(login);
-        return null;
+        String coachLogin;
+        try {
+
+        coachLogin = CoachFileReader.retrieveLoginFromLine(readLineByLogin(login));}
+        catch (Exception e){
+            throw new UserLoginException(e);
+        }
+        return coachLogin;
     }
 }
 
