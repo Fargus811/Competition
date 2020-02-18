@@ -16,17 +16,12 @@ import java.util.Scanner;
 import java.util.logging.LogManager;
 
 public class Main {
-    private static Logger log = Logger.getLogger(Main.class);
+    private final static Logger log = Logger.getLogger(Main.class);
 
     public static void main(String[] args) throws CommandException,SecurityException, SportsmanServiceException {
-        try {
-            LogManager.getLogManager().readConfiguration(
-                    Main.class.getResourceAsStream("/log4j.properties"));
-        } catch (IOException e) {
-            System.err.println("Could not setup logger configuration: " + e.toString());
-        }
         FileConfigurator dbManager = new FileConfigurator();
         System.out.println(dbManager.initFiles());
+        log.info("База данных поключена");
         Scanner scanner = new Scanner(System.in);
         Command currentCommand = new LoginCommand();
         while (true) {

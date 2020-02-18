@@ -9,6 +9,8 @@ import com.gmail.ggas.repository.SportsmanRepository;
 
 import java.util.List;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 public class SportsmanService {
 
     private static SportsmanService instance;

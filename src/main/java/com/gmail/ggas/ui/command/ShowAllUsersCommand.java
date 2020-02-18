@@ -2,9 +2,11 @@ package com.gmail.ggas.ui.command;
 
 import com.gmail.ggas.service.UserService;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class ShowAllUsersCommand implements Command{
+public class ShowAllUsersCommand implements Command {
 
     private static UserService userService = UserService.getInstance();
 
@@ -27,13 +29,28 @@ public class ShowAllUsersCommand implements Command{
     public CommandResult process(List<String> params) {
         List<Object> all = userService.showAll();
         StringBuilder result = new StringBuilder();
-        for (Object object : all) {
-            result.append(object);
-            result.append("/n");
+        if (all.size()<=10) {
+            for (Object object : all) {
+                result.append(object);
+                result.append("/n");
+            }
+            if (all.size() == 0) {
+                result.append("Пустой список");
+            }
         }
-        if (all.size() == 0){
-            result.append("Пустой список");
+        else {
+            List<Object> currentUsers = new ArrayList<>();
+            List<Object> nextUsers = new ArrayList<>();
+            List<Object> previosUsers = new ArrayList<>();
+            for (int i = 0; i <10 ; i++) {
+                currentUsers.add(all.get(i));
+                for (Object object : currentUsers) {
+                    result.append(object);
+                    result.append("/n");
+                    result.append("prev --- next");
+                }
+            }
         }
-        return new CommandResult(new ShowAdminActionsCommand(), result.toString());
+        return new CommandResult(new ShowAdminActionsCommand());
     }
 }
