@@ -67,8 +67,8 @@ public class InMemoryCoachRepository implements CoachRepository {
         int cost = Integer.parseInt(coachParts[8]);
         double workExp = Double.valueOf(coachParts[10]);
         Sex sex = Sex.valueOf(coachParts[4]);
-        coachResult.setFirstName(coachParts[1]);
-        coachResult.setLastName(coachParts[2]);
+        coachResult.setFirstName(coachParts[2]);
+        coachResult.setLastName(coachParts[1]);
         coachResult.setAge(age);
         coachResult.setSex(sex);
         coachResult.setLogin(coachParts[5]);

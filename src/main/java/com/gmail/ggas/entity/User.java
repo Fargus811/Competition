@@ -38,7 +38,7 @@ public abstract class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +
-                ", country='" + login + '\'' +
+                ", login='" + login + '\'' +
                 ", sex=" + sex +
                 '}';
     }
