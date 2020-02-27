@@ -34,16 +34,16 @@ public abstract class User {
                 "@" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", role=" + role +
+                ", role='" + role + '\''+
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", age=" + age +
+                ", age='" + age + '\'' +
                 ", login='" + login + '\'' +
-                ", sex=" + sex +
+                ", sex='" + sex + '\'' +
                 '}';
     }
 
-    public  long getId() {
+    public long getId() {
         return id;
     }
 
