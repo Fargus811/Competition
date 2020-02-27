@@ -14,6 +14,10 @@ public class ShowAllCoachesCommand implements Command {
 
     private static final String INSTRUCTION = "Список тренеров:";
 
+    private static final String PREVIOUS_PAGE ="PREV";
+
+    private static final String NEXT_PAGE = "NEXT";
+
     private static CoachService coachService = CoachService.getInstance();
 
     @Override
@@ -45,9 +49,8 @@ public class ShowAllCoachesCommand implements Command {
             }
             return new CommandResult(new ShowAdminActionsCommand(), result.toString());
         } else {
-              readWideList(all);
+              return readWideList(all);
         }
-        return new CommandResult(new ShowAdminActionsCommand());
     }
 
     private CommandResult readWideList(List<Coach> all) {
@@ -55,36 +58,30 @@ public class ShowAllCoachesCommand implements Command {
         int pageSize = 10;
         int counter = 0;
         Scanner sc = new Scanner(System.in);
-        big_loop:
         for (; counter < pageSize * page; counter++) {
             try {
                 System.out.println(all.get(counter));
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("-----Конец списка-----"+'\n'+"---------PREV---------" );
-                if (sc.nextLine().equals("PREV")) {
+                System.out.println("-----Конец списка-----"+'\n'+"-----"+PREVIOUS_PAGE+"-----" );
+                if (sc.nextLine().equals(PREVIOUS_PAGE)) {
                     page--;
                     int counterLinesAtPage = counter%10 ;
                     counter= counter - pageSize  - counterLinesAtPage - 1 ;
-                    continue big_loop;
                 }}
                 if (counter == page * pageSize - 1) {
-                    System.out.println("NEXT --- PREV");
+                    System.out.println(NEXT_PAGE + "---" + PREVIOUS_PAGE);
                     String s = sc.nextLine();
-                    if (s.equals("NEXT")) {
+                    if (s.equals(NEXT_PAGE)) {
                         page++;
-                        //  counter++;
-                    } else if (s.equals("PREV") && page != 1) {
+                    } else if (s.equals(PREVIOUS_PAGE) && page != 1) {
                         page--;
                         counter= counter - (pageSize * 2) ;
                     } else if (s.equals("Exit")) {
                         sc.close();
                         return new CommandResult(new ShowAdminActionsCommand());
-                        //
                     }
                 }
             }
-
-
         return new CommandResult(new ShowAdminActionsCommand());
     }
 }
