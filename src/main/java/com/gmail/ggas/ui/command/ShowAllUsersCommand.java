@@ -2,9 +2,8 @@ package com.gmail.ggas.ui.command;
 
 import com.gmail.ggas.service.UserService;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 public class ShowAllUsersCommand implements Command {
 
@@ -29,7 +28,7 @@ public class ShowAllUsersCommand implements Command {
     public CommandResult process(List<String> params) {
         List<Object> all = userService.showAll();
         StringBuilder result = new StringBuilder();
-        if (all.size()<=10) {
+        if (all.size() <= 10) {
             for (Object object : all) {
                 result.append(object);
                 result.append("/n");
@@ -37,17 +36,23 @@ public class ShowAllUsersCommand implements Command {
             if (all.size() == 0) {
                 result.append("Пустой список");
             }
-        }
-        else {
-            List<Object> currentUsers = new ArrayList<>();
-            List<Object> nextUsers = new ArrayList<>();
-            List<Object> previosUsers = new ArrayList<>();
-            for (int i = 0; i <10 ; i++) {
-                currentUsers.add(all.get(i));
-                for (Object object : currentUsers) {
-                    result.append(object);
-                    result.append("/n");
-                    result.append("prev --- next");
+        } else {
+            int pageSize = 10;
+            int page = 1;
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                all.stream().skip((page - 1) * pageSize).limit(pageSize).forEach(System.out::println);
+                if (page != 1) {
+                    System.out.println("NEXT - - - PREV");
+                    String s = scanner.next();
+                    if (s.equals("NEXT")) {
+                        page++;
+                    } else if (s.equals("PREV")) {
+                        page--;
+                    } else {
+                        return new CommandResult(new ShowAdminActionsCommand());
+                    }
+
                 }
             }
         }
