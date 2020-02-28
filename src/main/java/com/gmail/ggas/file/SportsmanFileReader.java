@@ -11,6 +11,9 @@ import java.util.Scanner;
 
 public class SportsmanFileReader {
 
+    public final static  String relativePassToFile = "database/sportsmenList.txt";
+
+
     public static long readMaxId() {
         List<String> lines = readAllLines();
         long maxId = 0;
@@ -32,7 +35,7 @@ public class SportsmanFileReader {
 
     public static List<String> readAllLines() {
         List<String> list = new ArrayList<>();
-        try (Scanner in = new Scanner(new File("/Users/mac/Downloads/MyProjects/Competition/database/sportsmenList.txt"))) {
+        try (Scanner in = new Scanner(new File(relativePassToFile))) {
             while (in.hasNextLine()) {
                 list.add(in.nextLine());
             }

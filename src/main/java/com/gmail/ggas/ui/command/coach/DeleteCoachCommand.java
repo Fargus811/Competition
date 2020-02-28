@@ -1,6 +1,7 @@
 package com.gmail.ggas.ui.command.coach;
 
 import com.gmail.ggas.service.CoachService;
+import com.gmail.ggas.service.Service;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;
@@ -13,7 +14,7 @@ public class DeleteCoachCommand implements Command {
 
     private static final String RESULT = "Удаление прошло успешно";
 
-    private CoachService coachService = CoachService.getInstance();
+    private Service coachService = CoachService.getInstance();
 
     @Override
     public String getInstruction() {

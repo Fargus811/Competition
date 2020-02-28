@@ -3,30 +3,27 @@ package com.gmail.ggas.service;
 import com.gmail.ggas.entity.Coach;
 import com.gmail.ggas.entity.Role;
 import com.gmail.ggas.entity.Sex;
+import com.gmail.ggas.entity.User;
 import com.gmail.ggas.exception.CoachServiceException;
 import com.gmail.ggas.repository.CoachRepository;
 import com.gmail.ggas.repository.InMemoryCoachRepository;
 
 import java.util.List;
 
-public class CoachService {
+public class CoachService implements Service {
 
-    private static CoachService instance;
+    private static Service instance;
 
     private CoachRepository coachRepository = InMemoryCoachRepository.getInstance();
 
-    public static CoachService getInstance() {
+    public static Service getInstance() {
         if (instance == null) {
             instance = new CoachService();
         }
         return instance;
     }
 
-    public List<Coach> findAll() {
-        return coachRepository.findAll();
-    }
-
-    public void createCoach(List<String> params) throws CoachServiceException {
+    public void createPerson(List<String> params) throws CoachServiceException {
         try {
             int age = Integer.parseInt(params.get(2));
             int cost = Integer.parseInt(params.get(5));
@@ -84,6 +81,9 @@ public class CoachService {
         } catch (Exception e) {
             throw new CoachServiceException(e);
         }
-
     }
+    public List<User> findAll() {
+        return coachRepository.findAll();
+    }
+
 }

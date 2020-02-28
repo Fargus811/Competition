@@ -3,6 +3,7 @@ package com.gmail.ggas.ui.command.coach;
 import com.gmail.ggas.exception.CoachServiceException;
 import com.gmail.ggas.exception.CommandException;
 import com.gmail.ggas.service.CoachService;
+import com.gmail.ggas.service.Service;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;
@@ -20,7 +21,7 @@ public class CreateCoachCommand implements Command {
             , "Введите стоимость одной тренировки","Введите ранк тренера","Введите email",
             "Введите пароль для вашего аккаунта", "Введите стаж работы"};
 
-    private CoachService coachService = CoachService.getInstance();
+    private Service coachService = CoachService.getInstance();
 
     @Override
     public String getInstruction() {
@@ -40,8 +41,8 @@ public class CreateCoachCommand implements Command {
     @Override
     public CommandResult process(List<String> params) throws CommandException {
         try {
-            coachService.createCoach(params);
-        } catch (CoachServiceException e) {
+            coachService.createPerson(params);
+        } catch (Exception e) {
             throw new CommandException(e);
         }
         return new CommandResult(new ShowAdminActionsCommand(), RESULT);

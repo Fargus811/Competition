@@ -1,5 +1,6 @@
 package com.gmail.ggas.ui.command.sportsman;
 
+import com.gmail.ggas.service.Service;
 import com.gmail.ggas.service.SportsmanService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
@@ -12,7 +13,7 @@ public class DeleteSportsmanCommand implements Command {
 
     private static final String RESULT = "Удаление прошло успешно";
 
-    private SportsmanService sportsmanService = SportsmanService.getInstance();
+    private Service sportsmanService = SportsmanService.getInstance();
 
     @Override
     public String getInstruction() {

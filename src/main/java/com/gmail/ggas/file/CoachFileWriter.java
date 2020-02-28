@@ -8,10 +8,14 @@ import java.util.List;
 
 public class CoachFileWriter {
 
+    public final static String relativePassToFile = "database/coachList.txt";
+
     public static void writeLinesToFile(List<String> lines) {
+
         FileWriter fileWriter = null;
+
         try {
-            fileWriter = new FileWriter("/Users/mac/Downloads/MyProjects/Competition/database/coachList.txt");
+            fileWriter = new FileWriter(relativePassToFile);
             fileWriter.write(StringUtils.join(lines, "\n"));
 
         } catch (IOException e) {

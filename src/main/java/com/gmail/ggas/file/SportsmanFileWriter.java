@@ -7,10 +7,15 @@ import java.io.IOException;
 import java.util.List;
 
 public class SportsmanFileWriter {
+
+    public final static String relativePassToFile = "database/sportsmenList.txt";
+
     public static void writeLinesToFile(List<String> lines) {
+
         FileWriter fileWriter = null;
+
         try {
-            fileWriter = new FileWriter("/Users/mac/Downloads/MyProjects/Competition/database/sportsmenList.txt");
+            fileWriter = new FileWriter(relativePassToFile);
             fileWriter.write(StringUtils.join(lines, "\n"));
 
         } catch (IOException e) {

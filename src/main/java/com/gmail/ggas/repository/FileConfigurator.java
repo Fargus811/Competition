@@ -55,22 +55,20 @@ public class FileConfigurator {
                     fileWriter.write(((Coach) userdata).parseToDbString());
                     fileWriter.close();
                     return true;
-                } else if (userdata instanceof Sportsman){
+                } else if (userdata instanceof Sportsman) {
                     System.out.println(((Sportsman) userdata).parseToDbString());
                     fileWriter.write(((Sportsman) userdata).parseToDbString());
                     fileWriter.close();
                     return true;
                 }
             }
-    } catch(Exception e)
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
 
-    {
-        e.printStackTrace();
         return false;
     }
-
-        return false;
-}
 
     public File getCoachFile() {
         return coachFile;

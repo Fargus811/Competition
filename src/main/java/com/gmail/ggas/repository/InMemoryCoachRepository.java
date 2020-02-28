@@ -3,11 +3,13 @@ package com.gmail.ggas.repository;
 import com.gmail.ggas.entity.Coach;
 import com.gmail.ggas.entity.Role;
 import com.gmail.ggas.entity.Sex;
+import com.gmail.ggas.entity.User;
 import com.gmail.ggas.exception.UserLoginException;
 import com.gmail.ggas.file.CoachFileReader;
 import com.gmail.ggas.file.CoachFileWriter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.gmail.ggas.file.CoachFileReader.readLineByLogin;
 
@@ -58,8 +60,8 @@ public class InMemoryCoachRepository implements CoachRepository {
         CoachFileWriter.writeLinesToFile(allLines);
     }
 
-    @Override
-    public Coach buildCoach(String coach) {
+
+    private Coach buildCoach(String coach) {
         String[] coachParts = coach.split(";");
         Coach coachResult = new Coach();
         coachResult.setId(Long.parseLong(coachParts[0]));
@@ -108,9 +110,9 @@ public class InMemoryCoachRepository implements CoachRepository {
     }
 
     @Override
-    public List<Coach> findAll() {
+    public List<User> findAll() {
         List<String> coachLines = CoachFileReader.readAllLines();
-        List<Coach> coachResult = new ArrayList<>();
+        List<User> coachResult = new ArrayList<>();
         for (String line : coachLines) {
             coachResult.add(buildCoach(line));
         }
@@ -125,13 +127,13 @@ public class InMemoryCoachRepository implements CoachRepository {
     }
 
     @Override
-    public String findByLogin(String login) throws UserLoginException{
+    public String findByLogin(String login) throws UserLoginException {
         coachFileConfig.initFiles();
         String coachLogin;
         try {
 
-        coachLogin = CoachFileReader.retrieveLoginFromLine(readLineByLogin(login));}
-        catch (Exception e){
+            coachLogin = CoachFileReader.retrieveLoginFromLine(readLineByLogin(login));
+        } catch (Exception e) {
             throw new UserLoginException(e);
         }
         return coachLogin;

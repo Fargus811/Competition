@@ -3,6 +3,7 @@ package com.gmail.ggas.repository;
 import com.gmail.ggas.entity.Role;
 import com.gmail.ggas.entity.Sex;
 import com.gmail.ggas.entity.Sportsman;
+import com.gmail.ggas.entity.User;
 import com.gmail.ggas.file.CoachFileReader;
 import com.gmail.ggas.file.SportsmanFileReader;
 import com.gmail.ggas.file.SportsmanFileWriter;
@@ -19,16 +20,15 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
 
     private FileConfigurator sportsmanFileConfig = new FileConfigurator();
 
-    private static InMemorySportsmanRepository instance ;
+    private static InMemorySportsmanRepository instance;
 
 
-    public static InMemorySportsmanRepository getInstance(){
-        if(instance == null){
+    public static InMemorySportsmanRepository getInstance() {
+        if (instance == null) {
             instance = new InMemorySportsmanRepository();
         }
         return instance;
     }
-
 
 
     @Override
@@ -43,7 +43,7 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
     }
 
     @Override
-    public List<Sportsman> findAll() {
+    public List<User> findAll() {
         return Collections.unmodifiableList(sportsmanList);
     }
 
@@ -65,16 +65,17 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
         String coachString = SportsmanFileReader.readLineById(String.valueOf(id));
         return coachString == null ? null : buildSportsman(coachString);
     }
+
     @Override
-    public Sportsman findByWeight(double weight)  {
+    public Sportsman findByWeight(double weight) {
         List<Sportsman> weightSportsman = new ArrayList<>();
         for (Sportsman sportsman : sportsmanList) {
             if (sportsman.getWeight() == weight) {
                 weightSportsman.add(sportsman);
             }
         }
-        for (Sportsman sportsman:weightSportsman
-             ) {
+        for (Sportsman sportsman : weightSportsman
+        ) {
             return sportsman;
         }
         return null;
@@ -97,8 +98,7 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
         SportsmanFileWriter.writeLinesToFile(allLines);
     }
 
-    @Override
-    public Sportsman buildSportsman(String sportsman) {
+    private Sportsman buildSportsman(String sportsman) {
         String[] coachParts = sportsman.split(";");
         Sportsman sportsmanResult = new Sportsman();
         sportsmanResult.setId(Long.parseLong(coachParts[0]));
@@ -141,8 +141,4 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
         return counter;
     }
 
-    @Override
-    public Sportsman findByManAndWeight(double weight, Sex sex) {
-        return null;
-    }
 }

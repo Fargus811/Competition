@@ -136,4 +136,6 @@ public abstract class User {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, role, email, age, login, sex);
     }
+
+    public abstract double getWorkExperience();
 }

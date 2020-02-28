@@ -2,6 +2,7 @@ package com.gmail.ggas.ui.command.sportsman;
 
 import com.gmail.ggas.exception.CommandException;
 import com.gmail.ggas.exception.SportsmanServiceException;
+import com.gmail.ggas.service.Service;
 import com.gmail.ggas.service.SportsmanService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
@@ -16,7 +17,7 @@ public class CreatSporstmanCommand implements Command {
     private static final String INSTRUCTION = "Начинаем создавать спортсмена";
 
 
-    private static SportsmanService sportsmanService = SportsmanService.getInstance();
+    private static Service sportsmanService = SportsmanService.getInstance();
 
     private String[] paramsInstruction = new String[]{"Введите имя спортсмена","Введите фамилию спортсмена",
             "Введите возраст спортсмена","Введите вес спортсмена","Введите логин спортсмена","Введите пароль",
@@ -40,8 +41,8 @@ public class CreatSporstmanCommand implements Command {
     @Override
     public CommandResult process(List<String> params) throws CommandException{
         try{
-            sportsmanService.createSportsman(params);
-        }catch (SportsmanServiceException e){
+            sportsmanService.createPerson(params);
+        }catch (Exception e){
             throw new CommandException(e);
         }
         return new CommandResult(new ShowAdminActionsCommand(), RESULT);

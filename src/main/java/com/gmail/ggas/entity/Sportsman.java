@@ -6,6 +6,11 @@ public class Sportsman extends User {
     private double weight;
 
     @Override
+    public double getWorkExperience() {
+        return 0;
+    }
+
+    @Override
     public long getId() {
         return super.getId();
     }

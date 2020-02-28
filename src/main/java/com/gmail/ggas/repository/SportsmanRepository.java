@@ -1,7 +1,7 @@
 package com.gmail.ggas.repository;
 
-import com.gmail.ggas.entity.Sex;
 import com.gmail.ggas.entity.Sportsman;
+import com.gmail.ggas.entity.User;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface SportsmanRepository {
 
     void save(Sportsman sportsman);
 
-    List<Sportsman> findAll();
+    List<User> findAll();
 
     List<Sportsman> findSportsManByAge(int age);
 
@@ -17,11 +17,7 @@ public interface SportsmanRepository {
 
     Sportsman findByWeight(double weight);
 
-    Sportsman findByManAndWeight(double weight, Sex sex);
-
     void deleteById(long id);
-
-    Sportsman buildSportsman(String sportsman);
 
     void update(Sportsman sportsman);
 

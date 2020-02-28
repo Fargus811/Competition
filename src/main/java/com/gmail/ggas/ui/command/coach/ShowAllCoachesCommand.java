@@ -1,7 +1,9 @@
 package com.gmail.ggas.ui.command.coach;
 
 import com.gmail.ggas.entity.Coach;
+import com.gmail.ggas.entity.User;
 import com.gmail.ggas.service.CoachService;
+import com.gmail.ggas.service.Service;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;
@@ -18,7 +20,7 @@ public class ShowAllCoachesCommand implements Command {
 
     private static final String NEXT_PAGE = "NEXT";
 
-    private static CoachService coachService = CoachService.getInstance();
+    private static Service coachService = CoachService.getInstance();
 
     @Override
     public String getInstruction() {
@@ -37,10 +39,10 @@ public class ShowAllCoachesCommand implements Command {
 
     @Override
     public CommandResult process(List<String> params) {
-        List<Coach> all = coachService.findAll();
+        List<User> all = coachService.findAll();
         StringBuilder result = new StringBuilder();
         if (all.size() < 11) {
-            for (Coach coach : all) {
+            for (User coach : all) {
                 result.append(coach);
                 result.append("\n");
             }
@@ -53,7 +55,7 @@ public class ShowAllCoachesCommand implements Command {
         }
     }
 
-    private CommandResult readWideList(List<Coach> all) {
+    private CommandResult readWideList(List<User> all) {
         int page = 1;
         int pageSize = 10;
         int counter = 0;

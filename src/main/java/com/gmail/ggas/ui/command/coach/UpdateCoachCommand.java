@@ -3,6 +3,7 @@ package com.gmail.ggas.ui.command.coach;
 import com.gmail.ggas.exception.CommandException;
 import com.gmail.ggas.exception.CoachServiceException;
 import com.gmail.ggas.service.CoachService;
+import com.gmail.ggas.service.Service;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;
@@ -15,7 +16,7 @@ public class UpdateCoachCommand implements Command {
 
     private static final String RESULT = "Информация о тренере успешно обновлена";
 
-    private CoachService coachService = CoachService.getInstance();
+    private Service coachService = CoachService.getInstance();
 
     private static final String[] paramInstructions = new String[]{"Введите id тренера","Ввeдите фамилию тренера", "Введите имя тренера",
             "Введите востраст тренера", "Введите пол тренара: MALE или FEMALE", "Введите логин тренера"
@@ -41,7 +42,7 @@ public class UpdateCoachCommand implements Command {
     public CommandResult process(List<String> params) throws CommandException {
         try {
             coachService.update(params);
-        } catch (CoachServiceException e) {
+        } catch (Exception e) {
             throw new CommandException(e);
         }
         return new CommandResult(new ShowAdminActionsCommand(), RESULT);

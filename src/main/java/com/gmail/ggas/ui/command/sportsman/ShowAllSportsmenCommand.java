@@ -1,6 +1,8 @@
 package com.gmail.ggas.ui.command.sportsman;
 
 import com.gmail.ggas.entity.Sportsman;
+import com.gmail.ggas.entity.User;
+import com.gmail.ggas.service.Service;
 import com.gmail.ggas.service.SportsmanService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
@@ -10,7 +12,7 @@ import java.util.List;
 
 public class ShowAllSportsmenCommand implements Command {
 
-    private static SportsmanService sportsmanService = SportsmanService.getInstance();
+    private static Service sportsmanService = SportsmanService.getInstance();
 
     @Override
     public String getInstruction() {
@@ -29,9 +31,9 @@ public class ShowAllSportsmenCommand implements Command {
 
     @Override
     public CommandResult process(List<String> params) {
-        List<Sportsman> all = sportsmanService.findAll();
+        List<User> all = sportsmanService.findAll();
         StringBuilder result = new StringBuilder();
-        for (Sportsman sportsman : all) {
+        for (User sportsman : all) {
             result.append(sportsman);
             result.append("/n");
         }
