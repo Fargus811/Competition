@@ -48,6 +48,24 @@ public class Coach extends User {
     }
 
     @Override
+    public String toString() {
+        return "User" +
+                "@" + getId() +
+                ", Coach:firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", role='" + getRole() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", age='" + getAge() + '\'' +
+                ", login='" + getLogin() + '\'' +
+                ", sex='" + getSex() + '\'' +
+                ", cost='" + cost + '\'' +
+                ", rank='" + rank + '\'' +
+                ", workExperience='" + workExperience + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), cost, rank);
     }

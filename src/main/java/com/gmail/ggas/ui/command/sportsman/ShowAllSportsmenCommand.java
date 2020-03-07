@@ -1,6 +1,5 @@
 package com.gmail.ggas.ui.command.sportsman;
 
-import com.gmail.ggas.entity.Sportsman;
 import com.gmail.ggas.entity.User;
 import com.gmail.ggas.service.Service;
 import com.gmail.ggas.service.SportsmanService;
@@ -16,7 +15,7 @@ public class ShowAllSportsmenCommand implements Command {
 
     @Override
     public String getInstruction() {
-        return "Список тренеров:";
+        return "Список спортсменов:";
     }
 
     @Override

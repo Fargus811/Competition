@@ -3,8 +3,8 @@ package com.gmail.ggas.service;
 import com.gmail.ggas.entity.Role;
 import com.gmail.ggas.exception.UserLoginException;
 import com.gmail.ggas.file.CoachFileReader;
-import com.gmail.ggas.repository.InMemoryCoachRepository;
-import com.gmail.ggas.repository.InMemorySportsmanRepository;
+import com.gmail.ggas.repository.impl.InMemoryCoachRepository;
+import com.gmail.ggas.repository.impl.InMemorySportsmanRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,8 @@ public class UserService {
     public Role login(String login, String password) throws UserLoginException {
         if ("admin".equals(login) && "admin".equals(password)) {
             return Role.ADMIN;
-        } else  if (login.equals(InMemoryCoachRepository.getInstance().findByLogin(login))&&
-                password.equals(CoachFileReader.findPasswordByLogin(login,password))) {
+        } else if ((InMemoryCoachRepository.getInstance().findByLogin(login) != null) &&
+                password.equals(CoachFileReader.findPasswordByLogin(login, password))) {
             return Role.COACH;
         } else {
             throw new UserLoginException("Введён неправильно логин или пароль");

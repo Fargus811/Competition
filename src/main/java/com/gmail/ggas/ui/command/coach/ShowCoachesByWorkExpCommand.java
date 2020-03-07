@@ -1,6 +1,5 @@
 package com.gmail.ggas.ui.command.coach;
 
-import com.gmail.ggas.entity.Coach;
 import com.gmail.ggas.entity.User;
 import com.gmail.ggas.exception.CommandException;
 import com.gmail.ggas.service.CoachService;
@@ -26,7 +25,7 @@ public class ShowCoachesByWorkExpCommand implements Command {
 
     @Override
     public int getParamsNumber() {
-        return paramInstructions.length ;
+        return paramInstructions.length;
     }
 
     @Override
@@ -39,9 +38,10 @@ public class ShowCoachesByWorkExpCommand implements Command {
         List<User> all = coachService.findAll();
         StringBuilder result = new StringBuilder();
         for (User coach : all) {
-            if (coach.getWorkExperience()>=Double.parseDouble(params.get(0))){
-            result.append(coach);
-            result.append("\n");}
+            if (coach.getWorkExperience() >= Double.parseDouble(params.get(0))) {
+                result.append(coach);
+                result.append("\n");
+            }
         }
         if (all.size() == 0) {
             result.append("Пустой список");

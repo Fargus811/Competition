@@ -3,22 +3,19 @@ package com.gmail.ggas.service;
 import com.gmail.ggas.entity.Role;
 import com.gmail.ggas.entity.Sex;
 import com.gmail.ggas.entity.Sportsman;
-import com.gmail.ggas.entity.User;
 import com.gmail.ggas.exception.SportsmanServiceException;
-import com.gmail.ggas.repository.InMemorySportsmanRepository;
 import com.gmail.ggas.repository.SportsmanRepository;
+import com.gmail.ggas.repository.impl.InMemorySportsmanRepository;
 
 import java.util.List;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+public class SportsmanService implements ISportsmanService {
 
-public class SportsmanService implements Service{
-
-    private static Service instance;
+    private static ISportsmanService instance;
 
     private SportsmanRepository sportsmanRepository = InMemorySportsmanRepository.getInstance();
 
-    public static Service getInstance() {
+    public static ISportsmanService getInstance() {
         if (instance == null) {
             instance = new SportsmanService();
         }
@@ -78,7 +75,7 @@ public class SportsmanService implements Service{
         }
     }
 
-    public List<User> findAll() {
+    public List<Sportsman> findAll() {
         return sportsmanRepository.findAll();
     }
 }

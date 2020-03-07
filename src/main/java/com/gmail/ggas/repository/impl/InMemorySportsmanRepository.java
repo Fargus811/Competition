@@ -1,26 +1,24 @@
-package com.gmail.ggas.repository;
+package com.gmail.ggas.repository.impl;
 
 import com.gmail.ggas.entity.Role;
 import com.gmail.ggas.entity.Sex;
 import com.gmail.ggas.entity.Sportsman;
-import com.gmail.ggas.entity.User;
-import com.gmail.ggas.file.CoachFileReader;
-import com.gmail.ggas.file.SportsmanFileReader;
-import com.gmail.ggas.file.SportsmanFileWriter;
+import com.gmail.ggas.file.*;
+import com.gmail.ggas.repository.SportsmanRepository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class InMemorySportsmanRepository implements SportsmanRepository {
-
-    private List<Sportsman> sportsmanList = new ArrayList<>();
 
     private static int counter = 0;
 
     private FileConfigurator sportsmanFileConfig = new FileConfigurator();
 
     private static InMemorySportsmanRepository instance;
+
+    private EntityKeyValueFileStore sportsmanKeyValueFileStore =
+            new EntityKeyValueFileStore("database/sportsmenList.txt");
 
 
     public static InMemorySportsmanRepository getInstance() {
@@ -43,20 +41,25 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
     }
 
     @Override
-    public List<User> findAll() {
-        return Collections.unmodifiableList(sportsmanList);
+    public List<Sportsman> findAll() {
+        List<String> sportsmanLines = sportsmanKeyValueFileStore.readAllLines();
+        List<Sportsman> sportsmanList = new ArrayList<>();
+        for (String line : sportsmanLines) {
+            sportsmanList.add(buildSportsman(line));
+        }
+        return sportsmanList;
     }
 
     @Override
     public List<Sportsman> findSportsManByAge(int age) {
-        List<Sportsman> ageSportsman = new ArrayList<>();
-        for (Sportsman sportsman : sportsmanList) {
-            if (sportsman.getAge() == age) {
-                ageSportsman.add(sportsman);
-            }
-        }
-        return ageSportsman;
-
+//        List<Sportsman> ageSportsman = new ArrayList<>();
+//        for (Sportsman sportsman : sportsmanList) {
+//            if (sportsman.getAge() == age) {
+//                ageSportsman.add(sportsman);
+//            }
+//        }
+//        return ageSportsman;
+        return null;
     }
 
     @Override
@@ -68,28 +71,28 @@ public class InMemorySportsmanRepository implements SportsmanRepository {
 
     @Override
     public Sportsman findByWeight(double weight) {
-        List<Sportsman> weightSportsman = new ArrayList<>();
-        for (Sportsman sportsman : sportsmanList) {
-            if (sportsman.getWeight() == weight) {
-                weightSportsman.add(sportsman);
-            }
-        }
-        for (Sportsman sportsman : weightSportsman
-        ) {
-            return sportsman;
-        }
+//        List<Sportsman> weightSportsman = new ArrayList<>();
+//        for (Sportsman sportsman : sportsmanList) {
+//            if (sportsman.getWeight() == weight) {
+//                weightSportsman.add(sportsman);
+//            }
+//        }
+//        for (Sportsman sportsman : weightSportsman
+//        ) {
+//            return sportsman;
+//        }
         return null;
     }
-
-    public List<Sportsman> findByManAndWeight(double weight) {
-        List<Sportsman> weightSportsman = new ArrayList<>();
-        for (Sportsman sportsman : sportsmanList) {
-            if (sportsman.getWeight() == weight && sportsman.getSex() == Sex.MALE) {
-                weightSportsman.add(sportsman);
-            }
-        }
-        return weightSportsman;
-    }
+//
+//    public List<Sportsman> findByManAndWeight(double weight) {
+//        List<Sportsman> weightSportsman = new ArrayList<>();
+//        for (Sportsman sportsman : sportsmanList) {
+//            if (sportsman.getWeight() == weight && sportsman.getSex() == Sex.MALE) {
+//                weightSportsman.add(sportsman);
+//            }
+//        }
+//        return weightSportsman;
+//    }
 
     @Override
     public void deleteById(long id) {

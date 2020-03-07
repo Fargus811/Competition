@@ -24,7 +24,8 @@ public class ShowAdminActionsCommand implements Command {
         System.out.println("7 - удалить спортсмена");
         System.out.println("8 - обновить информацию о тренере");
         System.out.println("9 - обновить информацию о спортсмене");
-
+        System.out.println("10 - искать тренера по стажу работы");
+        System.out.println("11 - искать тренера по возрасту");
         return INSTRUCTION_RESULT;
     }
 
@@ -64,23 +65,26 @@ public class ShowAdminActionsCommand implements Command {
                 break;
 
             case "6":
-               commandResult = new CommandResult(new DeleteCoachCommand());
-               break;
+                commandResult = new CommandResult(new DeleteCoachCommand());
+                break;
 
             case "7":
                 commandResult = new CommandResult(new DeleteSportsmanCommand());
                 break;
 
-           case "8":
+            case "8":
                 commandResult = new CommandResult(new UpdateCoachCommand());
-               break;
+                break;
 
             case "9":
                 commandResult = new CommandResult(new UpdateSportsmanCommand());
                 break;
-
             case "10":
                 commandResult = new CommandResult(new ShowCoachesByWorkExpCommand());
+                break;
+            case "11":
+                commandResult = new CommandResult(new ShowCoachesByAgeCommand());
+                break;
             default:
                 commandResult = new CommandResult(new ShowAdminActionsCommand());
                 break;

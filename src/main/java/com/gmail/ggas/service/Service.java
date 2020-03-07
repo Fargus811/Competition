@@ -1,14 +1,12 @@
 package com.gmail.ggas.service;
 
-import com.gmail.ggas.entity.User;
-
 import java.util.List;
 
-public interface Service {
+public interface Service<T> {
 
     void deleteById(long id );
 
-    List<User> findAll();
+    List<T> findAll();
 
     void update(List<String> params) throws Exception;
 

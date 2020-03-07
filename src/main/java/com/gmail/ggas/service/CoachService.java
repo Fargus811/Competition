@@ -3,20 +3,19 @@ package com.gmail.ggas.service;
 import com.gmail.ggas.entity.Coach;
 import com.gmail.ggas.entity.Role;
 import com.gmail.ggas.entity.Sex;
-import com.gmail.ggas.entity.User;
 import com.gmail.ggas.exception.CoachServiceException;
 import com.gmail.ggas.repository.CoachRepository;
-import com.gmail.ggas.repository.InMemoryCoachRepository;
+import com.gmail.ggas.repository.impl.InMemoryCoachRepository;
 
 import java.util.List;
 
-public class CoachService implements Service {
+public class CoachService implements ICoachService {
 
-    private static Service instance;
+    private static ICoachService instance;
 
     private CoachRepository coachRepository = InMemoryCoachRepository.getInstance();
 
-    public static Service getInstance() {
+    public static ICoachService getInstance() {
         if (instance == null) {
             instance = new CoachService();
         }
@@ -82,8 +81,12 @@ public class CoachService implements Service {
             throw new CoachServiceException(e);
         }
     }
-    public List<User> findAll() {
+
+    public List<Coach> findAll() {
         return coachRepository.findAll();
     }
 
+    public List<Coach> findCoachByAge(List<String> params) {
+        return coachRepository.findCoachByAge(Integer.parseInt(params.get(0)));
+    }
 }

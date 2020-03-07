@@ -128,5 +128,20 @@ public class Sportsman extends User {
                 + super.getSex() + ";" + super.getLogin() + ";" + super.getPassword()+ ";" + super.getEmail() + ";" + weight + ";" + "\n";
     }
 
+    @Override
+    public String toString() {
+        return "User" +
+                "@" + getId() +
+                ", Coach:firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", role='" + getRole() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", age='" + getAge() + '\'' +
+                ", login='" + getLogin() + '\'' +
+                ", sex='" + getSex() + '\'' +
+                ", weight='" + weight + '\'' +
+                '}';
+    }
 
 }

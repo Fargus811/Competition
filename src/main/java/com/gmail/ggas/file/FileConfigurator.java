@@ -1,4 +1,4 @@
-package com.gmail.ggas.repository;
+package com.gmail.ggas.file;
 
 import com.gmail.ggas.entity.Coach;
 import com.gmail.ggas.entity.Sportsman;
@@ -41,7 +41,7 @@ public class FileConfigurator {
         return created;
     }
 
-    boolean writeDataToFile(File fileToSave, Object userdata) {
+    public boolean writeDataToFile(File fileToSave, Object userdata) {
         if (!fileToSave.exists()) {
             System.out.println("Что-то пошло не так? Вы удалили файл или перенесли его");
             return false;

@@ -2,18 +2,16 @@ package com.gmail.ggas.ui;
 
 import com.gmail.ggas.exception.CommandException;
 import com.gmail.ggas.exception.SportsmanServiceException;
-import org.apache.log4j.Logger;
-import com.gmail.ggas.repository.FileConfigurator;
+import com.gmail.ggas.file.FileConfigurator;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ExitCommand;
 import com.gmail.ggas.ui.command.LoginCommand;
+import org.apache.log4j.Logger;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.LogManager;
 
 public class Main {
     private final static Logger log = Logger.getLogger(Main.class);
