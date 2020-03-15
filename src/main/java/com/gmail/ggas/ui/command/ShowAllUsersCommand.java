@@ -1,6 +1,7 @@
 package com.gmail.ggas.ui.command;
 
-import com.gmail.ggas.service.UserService;
+import com.gmail.ggas.entity.User;
+import com.gmail.ggas.service.implservice.UserService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -26,36 +27,44 @@ public class ShowAllUsersCommand implements Command {
 
     @Override
     public CommandResult process(List<String> params) {
-        List<Object> all = userService.showAll();
-        StringBuilder result = new StringBuilder();
+        List<User> all = userService.showAll();
         if (all.size() <= 10) {
-            for (Object object : all) {
-                result.append(object);
-                result.append("/n");
-            }
-            if (all.size() == 0) {
-                result.append("Пустой список");
-            }
+            buildListResult(all);
         } else {
-            int pageSize = 10;
-            int page = 1;
-            Scanner scanner = new Scanner(System.in);
-            while (true) {
-                all.stream().skip((page - 1) * pageSize).limit(pageSize).forEach(System.out::println);
-                if (page != 1) {
-                    System.out.println("NEXT - - - PREV");
-                    String s = scanner.next();
-                    if (s.equals("NEXT")) {
-                        page++;
-                    } else if (s.equals("PREV")) {
-                        page--;
-                    } else {
-                        return new CommandResult(new ShowAdminActionsCommand());
-                    }
-
-                }
-            }
+            return buildPageResult(all);
         }
         return new CommandResult(new ShowAdminActionsCommand());
+    }
+
+    private CommandResult buildPageResult(List<User> all) {
+        int pageSize = 10;
+        int page = 1;
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            all.stream().skip((page - 1) * pageSize).limit(pageSize).forEach(System.out::println);
+            if (page != 1) {
+                System.out.println("NEXT - - - PREV");
+                String s = scanner.next();
+                if (s.equals("NEXT")) {
+                    page++;
+                } else if (s.equals("PREV")) {
+                    page--;
+                } else {
+                    return new CommandResult(new ShowAdminActionsCommand());
+                }
+
+            }
+        }
+    }
+
+    private void buildListResult(List<User> all) {
+        StringBuilder result = new StringBuilder();
+        for (Object object : all) {
+            result.append(object);
+            result.append("\n");
+        }
+        if (all.size() == 0) {
+            result.append("Пустой список");
+        }
     }
 }

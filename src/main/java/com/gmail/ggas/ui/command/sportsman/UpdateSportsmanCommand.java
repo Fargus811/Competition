@@ -1,9 +1,11 @@
 package com.gmail.ggas.ui.command.sportsman;
 
+import com.gmail.ggas.entity.Role;
+import com.gmail.ggas.entity.Sex;
+import com.gmail.ggas.entity.Sportsman;
 import com.gmail.ggas.exception.CommandException;
-import com.gmail.ggas.exception.SportsmanServiceException;
 import com.gmail.ggas.service.Service;
-import com.gmail.ggas.service.SportsmanService;
+import com.gmail.ggas.service.implservice.SportsmanService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;
@@ -41,7 +43,21 @@ public class UpdateSportsmanCommand implements Command {
     @Override
     public CommandResult process(List<String> params) throws CommandException {
         try {
-            sportsmanService.update(params);
+            int age = Integer.parseInt(params.get(3));
+            double weight = Double.valueOf(params.get(4));
+            Sex sex = Sex.valueOf(params.get(7));
+            Sportsman sportsman = new Sportsman();
+            sportsman.setId(Long.parseLong(params.get(0)));
+            sportsman.setFirstName(params.get(1));
+            sportsman.setLastName(params.get(2));
+            sportsman.setLogin(params.get(5));
+            sportsman.setPassword(params.get(6));
+            sportsman.setEmail(params.get(8));
+            sportsman.setAge(age);
+            sportsman.setSex(sex);
+            sportsman.setWeight(weight);
+            sportsman.setRole(Role.SPORTSMEN);
+            sportsmanService.update(sportsman);
         } catch (Exception e) {
             throw new CommandException(e);
         }

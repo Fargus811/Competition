@@ -2,7 +2,6 @@ package com.gmail.ggas.ui;
 
 import com.gmail.ggas.exception.CommandException;
 import com.gmail.ggas.exception.SportsmanServiceException;
-import com.gmail.ggas.file.FileConfigurator;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ExitCommand;
@@ -17,9 +16,6 @@ public class Main {
     private final static Logger log = Logger.getLogger(Main.class);
 
     public static void main(String[] args) throws CommandException,SecurityException, SportsmanServiceException {
-        FileConfigurator dbManager = new FileConfigurator();
-        System.out.println(dbManager.initFiles());
-        log.info("База данных поключена");
         Scanner scanner = new Scanner(System.in);
         Command currentCommand = new LoginCommand();
         while (true) {

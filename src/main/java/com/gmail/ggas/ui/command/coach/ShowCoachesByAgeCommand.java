@@ -1,8 +1,8 @@
 package com.gmail.ggas.ui.command.coach;
 
 import com.gmail.ggas.entity.Coach;
-import com.gmail.ggas.service.CoachService;
 import com.gmail.ggas.service.ICoachService;
+import com.gmail.ggas.service.implservice.CoachService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;
@@ -34,7 +34,8 @@ public class ShowCoachesByAgeCommand implements Command {
 
     @Override
     public CommandResult process(List<String> params) {
-        List<Coach> all = coachService.findCoachByAge(params);
+        int age = Integer.parseInt(params.get(0));
+        List<Coach> all = coachService.findCoachByAge(age);
         StringBuilder result = new StringBuilder();
         for (Coach coach : all) {
             result.append(coach);

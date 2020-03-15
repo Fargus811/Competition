@@ -1,14 +1,14 @@
 package com.gmail.ggas.repository;
 
-import com.gmail.ggas.exception.UserLoginException;
-
 import java.util.List;
 
 public interface Repository<T> {
 
-    void save(T entity);
+    void create(T entity);
 
     List<T> findAll();
+
+    List<T> findAll(int page, int limit);
 
     T findById(long id);
 
@@ -16,6 +16,5 @@ public interface Repository<T> {
 
     void update(T entity);
 
-    T findByLogin(String login) throws UserLoginException;
 
 }

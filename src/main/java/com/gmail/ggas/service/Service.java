@@ -1,14 +1,18 @@
 package com.gmail.ggas.service;
 
+import com.gmail.ggas.entity.Entity;
+
 import java.util.List;
 
-public interface Service<T> {
+public interface Service<T extends Entity> {
 
     void deleteById(long id );
 
     List<T> findAll();
 
-    void update(List<String> params) throws Exception;
+    List<T> findAll(int page, int pageSize);
 
-    void createPerson(List<String> params) throws Exception;
+    void update(T entity) throws Exception;
+
+    void create(T entity) throws Exception;
 }

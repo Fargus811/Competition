@@ -1,9 +1,10 @@
 package com.gmail.ggas.ui.command.coach;
 
+import com.gmail.ggas.entity.Coach;
 import com.gmail.ggas.entity.User;
 import com.gmail.ggas.exception.CommandException;
-import com.gmail.ggas.service.CoachService;
-import com.gmail.ggas.service.Service;
+import com.gmail.ggas.service.ICoachService;
+import com.gmail.ggas.service.implservice.CoachService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;
@@ -14,7 +15,7 @@ public class ShowCoachesByWorkExpCommand implements Command {
 
     private static final String INSTRUCTION = "Находим тренера по стажу работы";
 
-    private static Service coachService = CoachService.getInstance();
+    private static ICoachService coachService = CoachService.getInstance();
 
     private static final String[] paramInstructions = new String[]{"Введите стаж работы тренера"};
 
@@ -35,7 +36,7 @@ public class ShowCoachesByWorkExpCommand implements Command {
 
     @Override
     public CommandResult process(List<String> params) throws CommandException {
-        List<User> all = coachService.findAll();
+        List<Coach> all = coachService.findAll();
         StringBuilder result = new StringBuilder();
         for (User coach : all) {
             if (coach.getWorkExperience() >= Double.parseDouble(params.get(0))) {

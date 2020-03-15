@@ -4,8 +4,8 @@ import com.gmail.ggas.entity.Coach;
 import com.gmail.ggas.entity.User;
 import com.gmail.ggas.exception.CommandException;
 import com.gmail.ggas.exception.SportsmanServiceException;
-import com.gmail.ggas.service.CoachService;
 import com.gmail.ggas.service.Service;
+import com.gmail.ggas.service.implservice.CoachService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 

@@ -2,7 +2,7 @@ package com.gmail.ggas.ui.command.sportsman;
 
 import com.gmail.ggas.entity.User;
 import com.gmail.ggas.service.Service;
-import com.gmail.ggas.service.SportsmanService;
+import com.gmail.ggas.service.implservice.SportsmanService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;
@@ -34,7 +34,7 @@ public class ShowAllSportsmenCommand implements Command {
         StringBuilder result = new StringBuilder();
         for (User sportsman : all) {
             result.append(sportsman);
-            result.append("/n");
+            result.append("\n");
         }
         if (all.size() == 0){
             result.append("Пустой список");

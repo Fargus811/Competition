@@ -2,7 +2,7 @@ package com.gmail.ggas.ui.command;
 
 import com.gmail.ggas.entity.Role;
 import com.gmail.ggas.exception.UserLoginException;
-import com.gmail.ggas.service.UserService;
+import com.gmail.ggas.service.implservice.UserService;
 
 import java.util.List;
 

@@ -15,10 +15,11 @@ import java.util.Scanner;
  */
 public class EntityKeyValueFileStore {
 
-    private String relativePassToFile;
+    private String relativePathToFile;
 
-    public EntityKeyValueFileStore(String relativePassToFile) {
-        this.relativePassToFile = relativePassToFile;
+    public EntityKeyValueFileStore(String relativePathToFile) {
+        this.relativePathToFile = relativePathToFile;
+        new FileConfigurator(relativePathToFile).initFile();
     }
 
     public void writeLinesToFile(List<String> lines) {
@@ -26,7 +27,7 @@ public class EntityKeyValueFileStore {
         FileWriter fileWriter = null;
 
         try {
-            fileWriter = new FileWriter(relativePassToFile);
+            fileWriter = new FileWriter(relativePathToFile);
             fileWriter.write(StringUtils.join(lines, "\n"));
 
         } catch (IOException e) {
@@ -85,7 +86,7 @@ public class EntityKeyValueFileStore {
 
     public List<String> readAllLines() {
         List<String> list = new ArrayList<>();
-        try (Scanner in = new Scanner(new File(relativePassToFile))) {
+        try (Scanner in = new Scanner(new File(relativePathToFile))) {
             while (in.hasNextLine()) {
                 list.add(in.nextLine());
             }

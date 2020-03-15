@@ -1,14 +1,12 @@
 package com.gmail.ggas.ui.command.coach;
 
-import com.gmail.ggas.entity.Coach;
 import com.gmail.ggas.entity.User;
-import com.gmail.ggas.service.CoachService;
 import com.gmail.ggas.service.Service;
+import com.gmail.ggas.service.implservice.CoachService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,6 +35,7 @@ public class ShowAllCoachesCommand implements Command {
         return new String[0];
     }
 
+    //TODO Сделать один класс для всех для вывода списков постранично
     @Override
     public CommandResult process(List<String> params) {
         List<User> all = coachService.findAll();

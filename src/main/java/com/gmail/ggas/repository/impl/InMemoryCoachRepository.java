@@ -3,94 +3,78 @@ package com.gmail.ggas.repository.impl;
 import com.gmail.ggas.entity.Coach;
 import com.gmail.ggas.entity.Role;
 import com.gmail.ggas.entity.Sex;
-import com.gmail.ggas.exception.RepositoryException;
-import com.gmail.ggas.file.CoachFileWriter;
+import com.gmail.ggas.exception.UserLoginException;
 import com.gmail.ggas.file.EntityKeyValueFileStore;
-import com.gmail.ggas.file.FileConfigurator;
 import com.gmail.ggas.repository.CoachRepository;
-import com.gmail.ggas.repository.condition.AgeCoachCondition;
-import com.gmail.ggas.repository.condition.CoachCondition;
-import com.gmail.ggas.repository.condition.CostCoachCondition;
-import com.gmail.ggas.repository.condition.LoginCoachCondition;
-import org.apache.commons.collections4.CollectionUtils;
+import com.gmail.ggas.repository.condition.Condition;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
-public class InMemoryCoachRepository implements CoachRepository {
+public class InMemoryCoachRepository extends BaseRepository<Coach> implements CoachRepository {
 
-    private List<Coach> coachList = new ArrayList<>();
+    private InMemoryCoachRepository(String relativePath) {
+        super(relativePath);
+    }
 
     private static InMemoryCoachRepository instance;
 
-    private FileConfigurator coachFileConfig = new FileConfigurator();
-
-    private EntityKeyValueFileStore coachKeyValueFileStore = new EntityKeyValueFileStore("database/coachList.txt");
-
-
     public static InMemoryCoachRepository getInstance() {
         if (instance == null) {
-            instance = new InMemoryCoachRepository();
-            instance.coachFileConfig.initFiles();
+            instance = new InMemoryCoachRepository("database/coachList.txt");
         }
-
         return instance;
     }
 
     @Override
     public List<Coach> findCoachByAge(int age) {
-        CoachCondition coachCondition = new AgeCoachCondition(age);
-        return findListByCondition(coachCondition);
-        //
-
-
+        Condition condition = new Condition<Coach>() {
+            @Override
+            public boolean check(Coach coach) {
+                return coach.getAge() == age;
+            }
+        };
+        return findListByCondition(condition);
     }
 
     @Override
     public List<Coach> findByCost(int cost) {
-        CoachCondition coachCondition = new CostCoachCondition(cost);
-        return findListByCondition(coachCondition);
-
-//        List<String> lines = coachKeyValueFileStore.readAllLines();
-//        List<Coach> coaches = new ArrayList<>();
-//        List<Coach> resultCoaches = new ArrayList<>();
-//        for (String line : lines) {
-//            coaches.add(buildCoach(line));
-//        }
-//        for (Coach coach : coaches) {
-//            // the same
-//            if (coach.getCost() == cost) {
-//                resultCoaches.add(coach);
-//            }
-//        }
-//        //the same
-//
-//        return resultCoaches;
-    }
-
-    private List<Coach> findListByCondition(CoachCondition condition) {
-        List<String> lines = coachKeyValueFileStore.readAllLines();
-        List<Coach> coaches = new ArrayList<>();
-        List<Coach> resultCoaches = new ArrayList<>();
-        for (String line : lines) {
-            coaches.add(buildCoach(line));
-        }
-        for (Coach coach : coaches) {
-            if (condition.check(coach)) { //
-                resultCoaches.add(coach);
+        Condition<Coach> condition = new Condition<Coach>() {
+            @Override
+            public boolean check(Coach coach) {
+                return coach.getCost() == cost;
             }
-        }
-        return resultCoaches;
+        };
+        return findListByCondition(condition);
     }
-
 
     @Override
-    public void deleteById(long id) {
-        coachKeyValueFileStore.deleteById(id);
+    public Coach findByLogin(String login) {
+        Condition<Coach> condition = new Condition<Coach>() {
+            @Override
+            public boolean check(Coach coach) {
+                return coach.getLogin().equals(login);
+            }
+        };
+        return findListByCondition(condition).get(0);
+    }
+
+    public String findPasswordByLogin(String login) throws UserLoginException {
+        List<String> lines = new EntityKeyValueFileStore("database/coachList.txt").readAllLines();
+        ListIterator<String> iterator = lines.listIterator();
+        String truePassword;
+        while (iterator.hasNext()) {
+            String currentLine = iterator.next();
+            if (currentLine.split(";")[5].equals(login)) {
+                truePassword = currentLine.split(";")[9];
+                return truePassword;
+            }
+        }
+        throw new UserLoginException();
     }
 
 
-    private Coach buildCoach(String coach) {
+    protected Coach buildEntity(String coach) {
         String[] coachParts = coach.split(";");
         Coach coachResult = new Coach();
         coachResult.setId(Long.parseLong(coachParts[0]));
@@ -112,77 +96,14 @@ public class InMemoryCoachRepository implements CoachRepository {
         return coachResult;
     }
 
-    @Override
-    public void update(Coach coach) {
-        String coachId = String.valueOf(coach.getId());
-        List<String> coachLines = coachKeyValueFileStore.readAllLines();
-        List<String> coachResult = new ArrayList<>();
-        for (String line : coachLines) {
-            if (!coachKeyValueFileStore.retrieveIdFromLine(line).equals(coachId)) {
-                coachResult.add(line);
-            }
-        }
-        coachResult.add(coach.parseToDbString());
-        CoachFileWriter.writeLinesToFile(coachResult);
+    //TODO оптимизировать
+    protected String buildLine(Coach coach) {
+        return coach.getId() + ";" + coach.getFirstName() + ";" + coach.getLastName() + ";" + coach.getAge() + ";"
+                + coach.getSex() + ";" + coach.getLogin() + ";" + coach.getPassword() + ";" + coach.getEmail() + ";"
+                + coach.getCost() + ";" + coach.getRank() + ";" + coach.getWorkExperience() + "\n";
+
     }
 
-    @Override
-    public void save(Coach coach) {
-        boolean success;
-        coach.setId(coachKeyValueFileStore.readMaxId() + 1);
-        success = coachFileConfig.writeDataToFile(coachFileConfig.getCoachFile(), coach);
-        if (!success) {
-            System.err.println("Почини руки");
-        }
-    }
-
-    @Override
-    public List<Coach> findAll() {
-        List<String> coachLines = coachKeyValueFileStore.readAllLines();
-        List<Coach> coachResult = new ArrayList<>();
-        for (String line : coachLines) {
-            coachResult.add(buildCoach(line));
-        }
-        return coachResult;
-    }
-
-    @Override
-    public Coach findById(long id) {
-        String coachString = coachKeyValueFileStore.readLineById(String.valueOf(id));
-        return coachString == null ? null : buildCoach(coachString);
-    }
-
-    @Override
-    public Coach findByLogin(String login) {
-        CoachCondition coachCondition = new LoginCoachCondition(login);
-        return findListByCondition(coachCondition).get(0);
-    }
-
-    public Coach findOneByCondition(CoachCondition condition) throws RepositoryException {
-        List<Coach> coaches = findListByCondition(condition);
-        if (CollectionUtils.isEmpty(coaches)) {
-            return null;
-        } else if (coaches.size() > 1) {
-            throw new RepositoryException("Illegal number of entities ");
-        }
-        return coaches.get(0);
-    }
 }
-
-//        List<String> lines = coachKeyValueFileStore.readAllLines();
-//        List<Coach> coaches = new ArrayList<>();
-//        for (String line : lines) {
-//            coaches.add(buildCoach(line));
-//        }
-//        for (Coach coach : coaches) {
-//            String currentLogin;
-//            currentLogin = coach.getLogin();
-//            if (currentLogin.equals(login)) {
-//                return coach;
-//            }
-//        }
-//        return null;
-//
-//    }
 
 

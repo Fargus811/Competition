@@ -1,7 +1,7 @@
 package com.gmail.ggas.ui.command.sportsman;
 
 import com.gmail.ggas.service.Service;
-import com.gmail.ggas.service.SportsmanService;
+import com.gmail.ggas.service.implservice.SportsmanService;
 import com.gmail.ggas.ui.command.Command;
 import com.gmail.ggas.ui.command.CommandResult;
 import com.gmail.ggas.ui.command.ShowAdminActionsCommand;

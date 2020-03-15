@@ -2,7 +2,7 @@ package com.gmail.ggas.entity;
 
 import java.util.Objects;
 
-public abstract class User {
+public abstract class User implements Entity {
     private long id;
     private String firstName;
     private String lastName;
